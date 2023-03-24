@@ -10,5 +10,12 @@ The `dart` directory documents some starters about the language that can be used
 
 ## Apps
 
-1. **First App**: To learn how to start building an app and lay out basic widgets (understanding the widget tree).
-1. 
+1. **Abstraction** (*first_app*): A lesson in making the first Flutter app.
+    - Just uses `StatelessWidgets` (no state of the app to be saved).
+    - Minimal and the least bit of code.
+    - Deals mostly with the starter concepts of reloads, widget trees, state, etc.
+1. **All in All** (*addition*): A lesson in creating layouts using Material UI.
+    - Still uses `StatelessWidgets` (no state of the app to be saved).
+    - Focusses a lot in layouts and structure.
+    - Codebase structured and organized as in standard Flutter projects.
+    - Incorporates local file storage.
