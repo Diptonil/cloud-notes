@@ -9,6 +9,7 @@
 .history
 .svn/
 .idea
+.vscode/
 doubts.txt
 
 # Flutter/Dart/Pub related

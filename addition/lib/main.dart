@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets/appbar.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,6 +12,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
+        appBar: BaseAppBar(),
         body: Center(
           child: Text('Hello World!'),
         ),
