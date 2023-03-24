@@ -1,3 +1,4 @@
+import 'package:first_app/utils.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,7 +27,7 @@ class HomeWidget extends StatelessWidget {
         backgroundColor: Colors.black,
         appBar: AppBar(
           title: const Text(
-            "Image Viewer",
+            "Abstraction",
             style: TextStyle(
               fontSize: 20.0,
               color: Colors.black,
@@ -58,7 +59,7 @@ class BodyWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(20.0),
           child: const Text(
-            "Use this app to view random images to your heart's content.",
+            "An app to buy abstract art. More items to be added soon!",
             style: TextStyle(
               fontSize: 20.0,
               color: Color.fromARGB(237, 247, 26, 100),
@@ -95,9 +96,9 @@ class ButtonWidget extends StatelessWidget {
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(237, 247, 26, 100)),
       ),
-      onPressed: () {},
+      onPressed: openURL,
       child: const Text(
-        "Refresh Image",
+        "Purchase",
         style: TextStyle(
           fontSize: 20.0,
           color: Colors.black,
