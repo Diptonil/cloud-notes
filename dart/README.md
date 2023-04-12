@@ -10,6 +10,7 @@ dart first.dart
 ## Basic Pointers
 
 - It is a statically typed language with dynamic behavior support.
+- Marking a function or a method's return type as `void` is not necessary. It can be skipped.
 - Basic data types (keep it simple during programming):
     - `int`
     - `String`
@@ -44,3 +45,15 @@ dart first.dart
 - The `classes.dart` file illustrates a simple class example. However, this just shows a simple case. Real use-cases aren't remotely as easy as this.
 - If we are inheriting, we use the keyword `extends` and we use the annotation `@override` at the top of the method we wish to oevrride and provide an original definition for in the child class.
 - The `static` and `super` keywords work exacly the same as they did in Java.
+
+
+## Final V Const
+
+In Java, `final` did the job of `const`. Things are different here, though. They serve the similar purpose of creating values that cannot be changed. However:
+- **final**: Used when a value is initialized at runtime. We use this in case we are making some API calls or fetching backend data. Can be used inside a class.
+- **const**: Used when a value is initialized at compile-time. We use this when we are absolutely certain of its contents since that would carry over throughout the app. Cannot be used inside a class.
+
+
+## Resources
+
+**DartPad** is a website that allows trial and use of Dart code.

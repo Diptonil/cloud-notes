@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 /// The main app bar throughout the app lifecycle.
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   const BaseAppBar({super.key});
+  static const String _title = 'All in All';
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
         borderRadius: BorderRadius.circular(20)
       ),
       title: const Text(
-        "All in All",
+        _title,
         style: TextStyle(
           fontFamily: "Quicksand",
           fontWeight: FontWeight.bold,
