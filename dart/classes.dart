@@ -1,4 +1,5 @@
 void main() {
+  // Using `new` is optional in Dart instantiation.
   User userOne = new User("Bruce Wayne", 100);
   print(userOne.getAge);
   print(userOne.getUsername);
@@ -32,7 +33,7 @@ class User {
   }
 
   // Constructors
-  User(String username, int age) : this.age = age, this.username = username;
+  User(this.username, this.age);
 
   // Methods
   bool isAdult() => (this.age >= 21) ? true : false;
