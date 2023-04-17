@@ -26,9 +26,35 @@ flutter pub add <dependency>
 ```
 
 
+## Firebase Auth
+
+Log in or out using Firebase. This takes place in a browser tab.
+```sh
+firebase login
+firebase logout
+```
+
+
 ## Add FlutterFire
 
 FlutterFire is a tool to integrate a Firebase backend with Flutter by just issuing simple customizable commands. It was a long process before this CLI had come out. That process could have a lot of errors and mess-ups. Not anymore.
 ```sh
 dart pub global activate flutterfire_cli 
+```
+
+
+## FlutterFire Project
+
+To start up a Flutter project and configure the backend:
+```sh
+flutterfire configure
+```
+The ID we enter for our new project needs to be unique globally.
+
+
+## Run Flutter on Web
+
+Ports would vary and be random.
+```sh
+flutter run -d web-server
 ```
