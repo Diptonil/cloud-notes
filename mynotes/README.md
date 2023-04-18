@@ -1,16 +1,6 @@
-# mynotes
+# My Notes
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This is the second app in series and it deals with the following lessons:
+- **Colors**: The `Color` class is the primary class that is used to manipulate colours. We have a set of predefined colours that we can reference by the respective names (as a sort of wrapper for convenience). That is denoted by `Colors`.
+- **Underscores in Variables**: In Dart, we use underscores for making a variable private to that particular class. Variables inside a function shouldn't use '_' for variables, since it is already private for that function.
+- **Scaffold**: The Scaffold is designed to be a top level container for a MaterialApp. It is the top-level class, basically. Everything is heirarchially under it. Nesting it is not a good idea, no matter what the use case. The docs say this.
