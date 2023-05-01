@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
     return const Scaffold(
       backgroundColor: Colors.white,
       appBar: BaseAppBar(),
-      body: Center(child: RegisterBody()),
+      body: Center(child: LoginBody()),
     );
   }
 }
