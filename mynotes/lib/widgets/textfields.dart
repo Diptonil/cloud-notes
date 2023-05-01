@@ -37,3 +37,22 @@ class PasswordTextField extends StatelessWidget {
     );
   }
 }
+
+
+class ConfirmPasswordTextField extends StatelessWidget {
+  const ConfirmPasswordTextField({Key? key, required this.confirmPasswordController}) : super(key: key);
+  final TextEditingController confirmPasswordController;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: confirmPasswordController,
+      obscureText: true,
+      enableSuggestions: false,
+      autocorrect: false,
+      decoration: const InputDecoration(
+        hintText: 'Confirm Password'
+      )
+    );
+  }
+}

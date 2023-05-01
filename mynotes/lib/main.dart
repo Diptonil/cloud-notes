@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/utils/firebase.dart';
 import 'package:mynotes/widgets/body.dart';
 import 'package:mynotes/widgets/appbar.dart';
 
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  firebaseInitialize();
   runApp(
     MaterialApp(
       title: 'Flutter Demo',
