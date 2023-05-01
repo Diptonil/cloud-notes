@@ -47,6 +47,10 @@ void authExceptions(BuildContext context, FirebaseAuthException exception) {
     error = 'The password is too weak. Please try again.';
   } else if (exception.code == 'email-already-in-use') {
     error = 'The account already exists for that email. Please try logging in.';
+  } else if (exception.code == 'invalid-email') {
+    error = 'Incorrect values for email entered.';
+  } else {
+    error = 'Some problem has occured. Please try again later.';
   }
 
   SnackBar snackBar = SnackBar(

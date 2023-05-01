@@ -75,7 +75,11 @@ class _LoginBodyState extends State<LoginBody> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: []
+      children: [
+        EmailTextField(emailController: _email),
+        PasswordTextField(passwordController: _password),
+        LoginButton(emailController: _email, passwordController: _password),
+      ]
     );
   }
 }

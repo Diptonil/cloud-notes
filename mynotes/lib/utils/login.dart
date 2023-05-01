@@ -21,6 +21,8 @@ void authExceptions(BuildContext context, FirebaseAuthException exception) {
     error = 'No user found for that email.';
   } else if (exception.code == 'wrong-password') {
     error = 'Wrong password provided for that user.';
+  } else {
+    error = 'Some problem has occured. Please try again later.';
   }
 
   SnackBar snackBar = SnackBar(
@@ -35,9 +37,9 @@ void authExceptions(BuildContext context, FirebaseAuthException exception) {
 }
 
 
-void authLogin(BuildContext context, String email, String password) {
+void authLogin(BuildContext context, String email, String password) async {
   try {
-    FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    UserCredential credentials = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
   } on FirebaseAuthException catch(exception) {
     authExceptions(context, exception);
   } catch(exception) {
