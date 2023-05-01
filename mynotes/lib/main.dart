@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mynotes/widgets/body.dart';
 import 'package:mynotes/widgets/appbar.dart';
 
+
 void main() {
   runApp(
     MaterialApp(
@@ -13,6 +14,7 @@ void main() {
     )
   );
 }
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

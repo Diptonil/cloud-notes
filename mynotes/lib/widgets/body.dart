@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mynotes/widgets/buttons.dart';
+import 'package:mynotes/widgets/textfields.dart';
+
 
 class RegisterBody extends StatefulWidget {
   const RegisterBody({super.key});
@@ -7,6 +9,7 @@ class RegisterBody extends StatefulWidget {
   @override
   State<RegisterBody> createState() => _RegisterBodyState();
 }
+
 
 class _RegisterBodyState extends State<RegisterBody> {
   late final TextEditingController _email;
@@ -30,19 +33,9 @@ class _RegisterBodyState extends State<RegisterBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextField(
-          controller: _email,
-          decoration: const InputDecoration(
-            hintText: 'Email'
-          ),
-        ),
-        TextField(
-          controller: _password,
-          decoration: const InputDecoration(
-            hintText: 'Password'
-          ),
-        ),
-        const RegisterButton(),
+        EmailTextField(emailController: _email),
+        PasswordTextField(passwordController: _password),
+        RegisterButton(email: _email.text, password: _password.text),
       ],
     );
   }

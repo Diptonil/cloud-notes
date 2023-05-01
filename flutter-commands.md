@@ -45,8 +45,12 @@ dart pub global activate flutterfire_cli
 
 ## FlutterFire Project
 
-To start up a Flutter project and configure the backend:
+To start up a Flutter project and configure the backend (completely from sratch):
 ```sh
+firebase login
+dart pub global activate flutterfire_cli 
+flutterfire configure
+flutter pub add firebase_core
 flutterfire configure
 ```
 The ID we enter for our new project needs to be unique globally.
