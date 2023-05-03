@@ -1,6 +1,9 @@
+import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mynotes/widgets/buttons.dart';
 import 'package:mynotes/widgets/textfields.dart';
+import 'package:mynotes/utils/email_verification.dart';
 
 
 class RegisterBody extends StatefulWidget {
@@ -80,6 +83,59 @@ class _LoginBodyState extends State<LoginBody> {
         PasswordTextField(passwordController: _password),
         LoginButton(emailController: _email, passwordController: _password),
       ]
+    );
+  }
+}
+
+
+class EmailConfirmationBody extends StatefulWidget {
+  const EmailConfirmationBody({super.key});
+
+  @override
+  State<EmailConfirmationBody> createState() => _EmailConfirmationBodyState();
+}
+
+
+class _EmailConfirmationBodyState extends State<EmailConfirmationBody> {
+  bool isVerified = false;
+  Timer? timer;
+
+  void checkVerification(Timer? timer, BuildContext context, bool isVerified) async {
+    await FirebaseAuth.instance.currentUser?.reload();
+    setState(() {
+      isVerified = FirebaseAuth.instance.currentUser!.emailVerified;
+    });
+    if (isVerified) {
+      if (context.mounted) {
+        displayVerificationSuccess(context);
+      }
+      timer?.cancel();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAuth.instance.currentUser?.sendEmailVerification();
+    timer = Timer.periodic(const Duration(seconds: 3), (timer) { checkVerification(timer, context, isVerified); });
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: const [
+        Center(child: Text("Hold tight! Just a few more steps...")),
+        Center(child: Text("Check your email to verify yourself.")),
+        Center(child: CircularProgressIndicator()),
+        Center(child: ResendEMailButton())
+      ],
     );
   }
 }

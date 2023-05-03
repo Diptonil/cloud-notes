@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/widgets/screens.dart';
 import 'package:mynotes/utils/registration.dart';
 import 'package:mynotes/utils/login.dart';
+import 'package:mynotes/utils/email_verification.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class RegisterButton extends StatefulWidget {
@@ -24,6 +27,11 @@ class _RegisterButtonState extends State<RegisterButton> {
         final String password = widget.passwordController.text;
         final String confirmPassword = widget.confirmPasswordController.text;
         authRegistration(context, email, password, confirmPassword);
+        Navigator.push(context, MaterialPageRoute(builder: (ctx) => const EmailVerificationScreen()));
+        print("works");
+        if (FirebaseAuth.instance.currentUser != null) {
+          
+        }
       },
       child: const Text("Register")
     );
@@ -52,6 +60,24 @@ class _LoginButtonState extends State<LoginButton> {
         authLogin(context, email, password);
       },
       child: const Text("Login")
+    );
+  }
+}
+
+
+class ResendEMailButton extends StatefulWidget {
+  const ResendEMailButton({super.key});
+
+  @override
+  State<ResendEMailButton> createState() => _ResendEMailButtonState();
+}
+
+class _ResendEMailButtonState extends State<ResendEMailButton> {
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      child: const Text('Resend'),
+      onPressed: () { sendEmailVerification(); }
     );
   }
 }

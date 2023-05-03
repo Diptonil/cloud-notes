@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mynotes/utils/firebase.dart';
-import 'package:mynotes/widgets/body.dart';
-import 'package:mynotes/widgets/appbar.dart';
+import 'package:mynotes/widgets/screens.dart';
 
 
 void main() async {
@@ -9,7 +8,7 @@ void main() async {
   firebaseInitialize();
   runApp(
     MaterialApp(
-      title: 'Flutter Demo',
+      title: 'My Notes',
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
@@ -24,10 +23,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.white,
-      appBar: BaseAppBar(),
-      body: Center(child: LoginBody()),
-    );
+    return const RegisterScreen();
   }
 }
