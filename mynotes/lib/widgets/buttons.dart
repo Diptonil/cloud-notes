@@ -27,10 +27,9 @@ class _RegisterButtonState extends State<RegisterButton> {
         final String password = widget.passwordController.text;
         final String confirmPassword = widget.confirmPasswordController.text;
         authRegistration(context, email, password, confirmPassword);
-        Navigator.push(context, MaterialPageRoute(builder: (ctx) => const EmailVerificationScreen()));
-        print("works");
+        print(FirebaseAuth.instance.currentUser);
         if (FirebaseAuth.instance.currentUser != null) {
-          
+          Navigator.push(context, MaterialPageRoute(builder: (ctx) => const EmailVerificationScreen()));
         }
       },
       child: const Text("Register")
@@ -72,12 +71,54 @@ class ResendEMailButton extends StatefulWidget {
   State<ResendEMailButton> createState() => _ResendEMailButtonState();
 }
 
+
 class _ResendEMailButtonState extends State<ResendEMailButton> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       child: const Text('Resend'),
       onPressed: () { sendEmailVerification(); }
+    );
+  }
+}
+
+
+class RegisterNowButton extends StatefulWidget {
+  const RegisterNowButton({super.key});
+
+  @override
+  State<RegisterNowButton> createState() => _RegisterNowButtonState();
+}
+
+
+class _RegisterNowButtonState extends State<RegisterNowButton> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      child: const Text('Not registered yet? Register here.'),
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (ctx) => const RegisterScreen()));
+      }
+    );
+  }
+}
+
+
+class LoginNowButton extends StatefulWidget {
+  const LoginNowButton({super.key});
+
+  @override
+  State<LoginNowButton> createState() => _LoginNowButtonState();
+}
+
+class _LoginNowButtonState extends State<LoginNowButton> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      child: const Text('Already a member? Login here.'),
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (ctx) => const HomeScreen()));
+      }
     );
   }
 }

@@ -43,6 +43,7 @@ class _RegisterBodyState extends State<RegisterBody> {
         PasswordTextField(passwordController: _password),
         ConfirmPasswordTextField(confirmPasswordController: _confirmPassword),
         RegisterButton(emailController: _email, passwordController: _password, confirmPasswordController: _confirmPassword),
+        const LoginNowButton()
       ],
     );
   }
@@ -82,6 +83,7 @@ class _LoginBodyState extends State<LoginBody> {
         EmailTextField(emailController: _email),
         PasswordTextField(passwordController: _password),
         LoginButton(emailController: _email, passwordController: _password),
+        const RegisterNowButton(),
       ]
     );
   }

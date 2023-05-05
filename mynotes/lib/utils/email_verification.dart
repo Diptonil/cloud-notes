@@ -8,9 +8,7 @@ void displayVerificationSuccess(BuildContext context) {
     content: const Text("Email has been verified."),
     action: SnackBarAction(
       label: 'OK',
-      onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>const HomeScreen()));
-      },
+      onPressed: () {},
     ),
   );
   if (context.mounted) {
