@@ -57,6 +57,12 @@ class _LoginButtonState extends State<LoginButton> {
         final String email = widget.emailController.text;
         final String password = widget.passwordController.text;
         authLogin(context, email, password);
+        final user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          if (user.emailVerified) {
+            Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false);
+          }
+        }
       },
       child: const Text("Login")
     );
@@ -97,7 +103,7 @@ class _RegisterNowButtonState extends State<RegisterNowButton> {
     return TextButton(
       child: const Text('Not registered yet? Register here.'),
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (ctx) => const RegisterScreen()));
+        Navigator.of(context).pushNamedAndRemoveUntil('/register', (route) => false);
       }
     );
   }
@@ -117,7 +123,7 @@ class _LoginNowButtonState extends State<LoginNowButton> {
     return TextButton(
       child: const Text('Already a member? Login here.'),
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (ctx) => const HomeScreen()));
+        Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
       }
     );
   }

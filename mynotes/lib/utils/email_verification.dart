@@ -13,7 +13,7 @@ void displayVerificationSuccess(BuildContext context) {
   );
   if (context.mounted) {
     ScaffoldMessenger.of(context).showSnackBar(snackBar).closed.then((value) {
-      Navigator.push(context, MaterialPageRoute(builder: (ctx)=>const HomeScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (ctx)=>const LoginScreen()));
     });
   }
 }

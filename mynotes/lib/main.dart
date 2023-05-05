@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:mynotes/utils/firebase.dart';
 import 'package:mynotes/widgets/screens.dart';
@@ -13,6 +15,11 @@ void main() async {
         primarySwatch: Colors.amber,
       ),
       home: const HomePage(),
+      routes: {
+        '/home': (context) => HomeScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+      },
     )
   );
 }
@@ -23,6 +30,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeScreen();
+    return const LoginScreen();
   }
 }

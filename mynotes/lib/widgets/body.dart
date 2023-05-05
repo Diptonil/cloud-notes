@@ -6,6 +6,22 @@ import 'package:mynotes/widgets/textfields.dart';
 import 'package:mynotes/utils/email_verification.dart';
 
 
+class HomeBody extends StatefulWidget {
+  const HomeBody({super.key});
+
+  @override
+  State<HomeBody> createState() => _HomeBodyState();
+}
+
+
+class _HomeBodyState extends State<HomeBody> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+
 class RegisterBody extends StatefulWidget {
   const RegisterBody({super.key});
 
