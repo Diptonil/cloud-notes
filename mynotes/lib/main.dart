@@ -16,7 +16,7 @@ void main() async {
       ),
       home: const HomePage(),
       routes: {
-        '/home': (context) => HomeScreen(),
+        '/home': (context) => const HomeScreen(),
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
       },
