@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mynotes/widgets/dialogs.dart';
+import 'package:mynotes/utils/constants.dart';
 
 
 void authUnknownException(BuildContext context) {
@@ -25,6 +26,16 @@ void authExceptions(BuildContext context, FirebaseAuthException exception) {
 void authLogin(BuildContext context, String email, String password) async {
   try {
     UserCredential credentials = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    final user = FirebaseAuth.instance.currentUser;
+    if (user?.emailVerified ?? false) {
+      if (context.mounted) {
+        Navigator.of(context).pushNamedAndRemoveUntil(homeRoute, (route) => false);
+      }
+    } else {
+      if (context.mounted) {
+        Navigator.of(context).pushNamedAndRemoveUntil(verifyEmail, (route) => false);
+      }
+    }
   } on FirebaseAuthException catch(exception) {
     authExceptions(context, exception);
   } catch(exception) {

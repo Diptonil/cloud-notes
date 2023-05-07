@@ -18,6 +18,7 @@ void main() async {
         homeRoute: (context) => const HomeScreen(),
         loginRoute: (context) => const LoginScreen(),
         registerRoute: (context) => const RegisterScreen(),
+        verifyEmail: (context) => const EmailVerificationScreen()
       },
       debugShowCheckedModeBanner: false,
     )

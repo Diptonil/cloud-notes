@@ -58,12 +58,6 @@ class _LoginButtonState extends State<LoginButton> {
         final String email = widget.emailController.text;
         final String password = widget.passwordController.text;
         authLogin(context, email, password);
-        final user = FirebaseAuth.instance.currentUser;
-        if (user != null) {
-          if (user.emailVerified) {
-            Navigator.of(context).pushNamedAndRemoveUntil(homeRoute, (route) => false);
-          }
-        }
       },
       child: const Text("Login")
     );
