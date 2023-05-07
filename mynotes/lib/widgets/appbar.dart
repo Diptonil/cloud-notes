@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/utils/constants.dart';
 import 'package:mynotes/utils/logout.dart';
 import 'dart:developer' as devtools show log;
 import 'package:mynotes/widgets/dialogs.dart';
@@ -101,7 +102,7 @@ class _PopupMenuState extends State<PopupMenu> {
             print(shouldLogout);
             logout(shouldLogout);
             if (context.mounted) {
-              Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+              Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (route) => false);
             }
             break;
         }

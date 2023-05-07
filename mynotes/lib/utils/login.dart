@@ -1,17 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mynotes/widgets/dialogs.dart';
 
 
 void authUnknownException(BuildContext context) {
-  SnackBar snackBar = SnackBar(
-    content: const Text('Some problem has occured. Please try again later.'),
-    action: SnackBarAction(
-      label: 'OK',
-      onPressed: () {},
-    ),
-  );
-
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  const String error = 'Some problem has occured. Please try again later.';
+  showErrorDialog(context, error);
 }
 
 
@@ -24,16 +18,7 @@ void authExceptions(BuildContext context, FirebaseAuthException exception) {
   } else {
     error = 'Some problem has occured. Please try again later.';
   }
-
-  SnackBar snackBar = SnackBar(
-    content: Text(error),
-    action: SnackBarAction(
-      label: 'OK',
-      onPressed: () {},
-    ),
-  );
-
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  showErrorDialog(context, error);
 }
 
 

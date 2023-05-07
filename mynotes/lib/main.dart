@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mynotes/utils/firebase.dart';
 import 'package:mynotes/widgets/screens.dart';
+import 'package:mynotes/utils/constants.dart';
 
 
 void main() async {
@@ -14,9 +15,9 @@ void main() async {
       ),
       home: const LoginScreen(),
       routes: {
-        '/home': (context) => const HomeScreen(),
-        '/login': (context) => const LoginScreen(),
-        '/register': (context) => const RegisterScreen(),
+        homeRoute: (context) => const HomeScreen(),
+        loginRoute: (context) => const LoginScreen(),
+        registerRoute: (context) => const RegisterScreen(),
       },
       debugShowCheckedModeBanner: false,
     )

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/utils/constants.dart';
 import 'package:mynotes/widgets/screens.dart';
 import 'package:mynotes/utils/registration.dart';
 import 'package:mynotes/utils/login.dart';
@@ -60,7 +61,7 @@ class _LoginButtonState extends State<LoginButton> {
         final user = FirebaseAuth.instance.currentUser;
         if (user != null) {
           if (user.emailVerified) {
-            Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false);
+            Navigator.of(context).pushNamedAndRemoveUntil(homeRoute, (route) => false);
           }
         }
       },
@@ -103,7 +104,7 @@ class _RegisterNowButtonState extends State<RegisterNowButton> {
     return TextButton(
       child: const Text('Not registered yet? Register here.'),
       onPressed: () {
-        Navigator.of(context).pushNamedAndRemoveUntil('/register', (route) => false);
+        Navigator.of(context).pushNamedAndRemoveUntil(registerRoute, (route) => false);
       }
     );
   }
@@ -124,7 +125,7 @@ class _LoginNowButtonState extends State<LoginNowButton> {
     return TextButton(
       child: const Text('Already a member? Login here.'),
       onPressed: () {
-        Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+        Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (route) => false);
       }
     );
   }
@@ -152,6 +153,27 @@ class _LogoutButtonState extends State<LogoutButton> {
 }
 
 
+class OKButton extends StatefulWidget {
+  const OKButton({super.key});
+
+  @override
+  State<OKButton> createState() => _OKButtonState();
+}
+
+
+class _OKButtonState extends State<OKButton> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).pop(true);
+      },
+      child: const Text('OK'),
+    );
+  }
+}
+
+
 class CancelButton extends StatefulWidget {
   const CancelButton({super.key});
 
@@ -164,9 +186,7 @@ class _CancelButtonState extends State<CancelButton> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {
-        Navigator.of(context).pop(false);
-      },
+      onPressed: () {},
       child: const Text('Cancel'),
     );
   }
