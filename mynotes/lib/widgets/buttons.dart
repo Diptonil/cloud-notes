@@ -117,6 +117,7 @@ class LoginNowButton extends StatefulWidget {
   State<LoginNowButton> createState() => _LoginNowButtonState();
 }
 
+
 class _LoginNowButtonState extends State<LoginNowButton> {
   @override
   Widget build(BuildContext context) {
@@ -125,6 +126,48 @@ class _LoginNowButtonState extends State<LoginNowButton> {
       onPressed: () {
         Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
       }
+    );
+  }
+}
+
+
+class LogoutButton extends StatefulWidget {
+  const LogoutButton({super.key});
+
+  @override
+  State<LogoutButton> createState() => _LogoutButtonState();
+}
+
+
+class _LogoutButtonState extends State<LogoutButton> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).pop(true);
+      },
+      child: const Text('Log Out'),
+    );
+  }
+}
+
+
+class CancelButton extends StatefulWidget {
+  const CancelButton({super.key});
+
+  @override
+  State<CancelButton> createState() => _CancelButtonState();
+}
+
+
+class _CancelButtonState extends State<CancelButton> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).pop(false);
+      },
+      child: const Text('Cancel'),
     );
   }
 }

@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.white,
-      appBar: BaseAppBar(),
+      appBar: AnonymousUserAppBar(),
       body: Center(child: LoginBody()),
     );
   }
@@ -38,7 +38,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.white,
-      appBar: BaseAppBar(),
+      appBar: AnonymousUserAppBar(),
       body: Center(child: RegisterBody()),
     );
   }
@@ -52,7 +52,7 @@ class EmailVerificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.white,
-      appBar: BaseAppBar(),
+      appBar: AnonymousUserAppBar(),
       body: Center(child: EmailConfirmationBody()),
     );
   }

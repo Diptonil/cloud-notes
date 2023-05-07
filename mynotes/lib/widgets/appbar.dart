@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/utils/logout.dart';
+import 'dart:developer' as devtools show log;
+import 'package:mynotes/widgets/dialogs.dart';
 
 
 enum MenuItem {
@@ -6,7 +9,38 @@ enum MenuItem {
 }
 
 
-/// The main app bar throughout the app lifecycle.
+/// The main app bar visible to the logged out or anonymous user throughout the app lifecycle.
+class AnonymousUserAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const AnonymousUserAppBar({super.key});
+  static const String _title = 'My Notes';
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      titleSpacing: 0,
+      centerTitle: true,
+      leading: const Icon(Icons.note_alt_outlined),
+      foregroundColor: Colors.black,
+      backgroundColor: Colors.amber,
+      shape: BeveledRectangleBorder(
+        borderRadius: BorderRadius.circular(20)
+      ),
+      title: const Text(
+        _title,
+        style: TextStyle(
+          fontFamily: "Quicksand",
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+
+/// The main app bar visible to the logged in user throughout the app lifecycle.
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   const BaseAppBar({super.key});
   static const String _title = 'My Notes';
@@ -53,15 +87,23 @@ class _PopupMenuState extends State<PopupMenu> {
       icon: const Icon(Icons.more_horiz),
       itemBuilder: (context) {
         return [
-          const PopupMenuItem<int>(
-            value: 0,
+          const PopupMenuItem<MenuItem>(
+            value: MenuItem.logout,
             child: Text('Log Out'),
           ),
         ];
       },
-      onSelected: (value) {
-        if (value == 0) {
-          print('Logout');
+      onSelected: (value) async {
+        switch (value) {
+          case MenuItem.logout:
+            bool shouldLogout = await showLogoutDialog(context);
+            devtools.log(shouldLogout.toString());
+            print(shouldLogout);
+            logout(shouldLogout);
+            if (context.mounted) {
+              Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+            }
+            break;
         }
       },
     );
