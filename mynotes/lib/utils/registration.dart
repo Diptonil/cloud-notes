@@ -1,5 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mynotes/services/auth/exceptions.dart';
+import 'package:mynotes/services/auth/services.dart';
 import 'package:mynotes/widgets/dialogs.dart';
 
 
@@ -11,7 +12,7 @@ void authPasswordMismatch(BuildContext context) {
 
 void authSuccesful(BuildContext context) {
   SnackBar snackBar = SnackBar(
-    content: const Text('Registration Succesful. Please wait.'),
+    content: const Text('Registration Succesful. Please verify email.'),
     action: SnackBarAction(
       label: 'OK',
       onPressed: () {},
@@ -22,38 +23,21 @@ void authSuccesful(BuildContext context) {
 }
 
 
-void authUnknownException(BuildContext context) {
-  const String error = 'Some problem has occured. Please try again later.';
-  showErrorDialog(context, error);
-}
-
-
-void authExceptions(BuildContext context, FirebaseAuthException exception) {
-  late String error;
-  if (exception.code == 'weak-password') {
-    error = 'The password is too weak. Please try again.';
-  } else if (exception.code == 'email-already-in-use') {
-    error = 'The account already exists for that email. Please try logging in.';
-  } else if (exception.code == 'invalid-email') {
-    error = 'Incorrect values for email entered.';
-  } else {
-    error = 'Some problem has occured. Please try again later.';
-  }
-  showErrorDialog(context, error);
-}
-
-
 void authRegistration(BuildContext context, String email, String password, String confirmPassword) async {
   if (password == confirmPassword) {
     try {
-      UserCredential credentials = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+      await AuthService.firebase().register(email: email, password: password);
       if (context.mounted) {
         authSuccesful(context);
       }
-    } on FirebaseAuthException catch(exception) {
-      authExceptions(context, exception);
-    } catch(exception) {
-      authUnknownException(context);
+    } on WeakPasswordAuthException {
+      showErrorDialog(context, 'The password is too weak. Please try again.');
+    } on EmailAlreadyInUseAuthException {
+      showErrorDialog(context, 'The account already exists for that email. Please try logging in.');      
+    } on InvalidEmailAuthException {
+      showErrorDialog(context, 'Incorrect values for email entered.');
+    } on GenericAuthException {
+      showErrorDialog(context, 'Some problem has occured. Please try again later.');
     }
   } else {
     authPasswordMismatch(context);

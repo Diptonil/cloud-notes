@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mynotes/services/auth/services.dart';
 import 'package:mynotes/widgets/buttons.dart';
 import 'package:mynotes/widgets/textfields.dart';
 import 'package:mynotes/utils/email_verification.dart';
@@ -134,7 +135,7 @@ class _EmailConfirmationBodyState extends State<EmailConfirmationBody> {
   @override
   void initState() {
     super.initState();
-    FirebaseAuth.instance.currentUser?.sendEmailVerification();
+    AuthService.firebase().verifyEmail();
     timer = Timer.periodic(const Duration(seconds: 3), (timer) { checkVerification(timer, context, isVerified); });
   }
 

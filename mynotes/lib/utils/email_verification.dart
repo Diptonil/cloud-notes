@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mynotes/services/auth/services.dart';
 import 'package:mynotes/widgets/screens.dart';
 
 
@@ -21,7 +21,7 @@ void displayVerificationSuccess(BuildContext context) {
 
 void sendEmailVerification() {
   try {
-    FirebaseAuth.instance.currentUser?.sendEmailVerification();
+    AuthService.firebase().verifyEmail();
   } catch (e) {
     debugPrint('$e');
   }

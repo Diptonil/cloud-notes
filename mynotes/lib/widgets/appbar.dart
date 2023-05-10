@@ -101,7 +101,7 @@ class _PopupMenuState extends State<PopupMenu> {
             devtools.log(shouldLogout.toString());
             print(shouldLogout);
             logout(shouldLogout);
-            if (context.mounted) {
+            if (context.mounted && shouldLogout) {
               Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (route) => false);
             }
             break;

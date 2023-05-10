@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mynotes/services/auth/services.dart';
 
 
 void logout(bool hasLoggedOut) async {
   if (hasLoggedOut) {
-    await FirebaseAuth.instance.signOut();
+    await AuthService.firebase().logout();
   }
 }

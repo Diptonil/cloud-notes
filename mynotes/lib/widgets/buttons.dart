@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mynotes/services/auth/services.dart';
 import 'package:mynotes/utils/constants.dart';
 import 'package:mynotes/widgets/screens.dart';
 import 'package:mynotes/utils/registration.dart';
 import 'package:mynotes/utils/login.dart';
 import 'package:mynotes/utils/email_verification.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 
 class RegisterButton extends StatefulWidget {
@@ -28,8 +28,9 @@ class _RegisterButtonState extends State<RegisterButton> {
         final String password = widget.passwordController.text;
         final String confirmPassword = widget.confirmPasswordController.text;
         authRegistration(context, email, password, confirmPassword);
-        print(FirebaseAuth.instance.currentUser);
-        if (FirebaseAuth.instance.currentUser != null) {
+        final user = AuthService.firebase().currentUser;
+        print(user);
+        if (user != null) {
           Navigator.push(context, MaterialPageRoute(builder: (ctx) => const EmailVerificationScreen()));
         }
       },
@@ -180,7 +181,9 @@ class _CancelButtonState extends State<CancelButton> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pop(false);
+      },
       child: const Text('Cancel'),
     );
   }
