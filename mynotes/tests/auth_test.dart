@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:mynotes/services/auth/exceptions.dart';
 import 'package:mynotes/services/auth/users.dart';
 import 'package:test/test.dart';
@@ -19,12 +17,12 @@ void main() {
       expect(mockProvider.logout(), throwsA(const TypeMatcher<UserNotFoundAuthException>()));
     });
 
-    test('Creation of user with an existing email.', () async {
-      expect(await mockProvider.register(email: 'existing@email.com', password: 'password'), throwsA(const TypeMatcher<EmailAlreadyInUseAuthException>()));
+    test('Creation of user with an existing email.', () {
+      expect(mockProvider.register(email: 'existing@email.com', password: 'password'), throwsA(const TypeMatcher<EmailAlreadyInUseAuthException>()));
     });
 
-    test('Creation of user with a weak password.', () async {
-      expect(await mockProvider.register(email: '', password: 'weak-password'), throwsA(const TypeMatcher<WeakPasswordAuthException>()));
+    test('Creation of user with a weak password.', () {
+      expect(mockProvider.register(email: '', password: 'weak-password'), throwsA(const TypeMatcher<WeakPasswordAuthException>()));
     });
 
     test('Creation of user.', () async {
@@ -33,18 +31,16 @@ void main() {
       expect(user?.isEmailVerified, false);
     });
 
-    test('Login of unknown user.', () async {
-      final user = await mockProvider.login(email: 'doesnt@exist.com', password: 'password');
-      expect(user, throwsA(const TypeMatcher<UserNotFoundAuthException>()));
+    test('Login of unknown user.', () {
+      expect(mockProvider.login(email: 'doesnt@exist.com', password: 'password'), throwsA(const TypeMatcher<UserNotFoundAuthException>()));
     });
 
-    test('Login with wrong password.', () async {
-      final user = await mockProvider.login(email: 'test@email.com', password: 'wrong-password');
-      expect(user, throwsA(const TypeMatcher<WrongPasswordAuthException>()));
+    test('Login with wrong password.', () {
+      expect(mockProvider.login(email: 'test@email.com', password: 'wrong-password'), throwsA(const TypeMatcher<WrongPasswordAuthException>()));
     });
 
     test('Correct login.', () async {
-      final user = await mockProvider.login(email: 'doesnt@exist.com', password: 'password');
+      final user = await mockProvider.login(email: 'test@email.com', password: 'password');
       expect(user?.isEmailVerified, true);
     });
   });
@@ -68,7 +64,7 @@ class MockAuthProvider implements AuthProvider {
   }
 
   @override
-  Future<AuthUser?> login({required String email, required String password}) {
+  Future<AuthUser?> login({required String email, required String password}) async {
     if (!isInitialised) {
       throw NotInitializedException();
     }
@@ -119,6 +115,5 @@ class MockAuthProvider implements AuthProvider {
       throw UserNotFoundAuthException();
     }
     _user = const AuthUser(isEmailVerified: true);
-
   }
 }
