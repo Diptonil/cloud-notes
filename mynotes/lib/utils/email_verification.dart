@@ -5,7 +5,7 @@ import 'package:mynotes/widgets/screens.dart';
 
 void displayVerificationSuccess(BuildContext context) {
   SnackBar snackBar = SnackBar(
-    content: const Text("Email has been verified."),
+    content: const Text('Email has been verified.'),
     action: SnackBarAction(
       label: 'OK',
       onPressed: () {},

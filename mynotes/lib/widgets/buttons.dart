@@ -34,7 +34,7 @@ class _RegisterButtonState extends State<RegisterButton> {
           Navigator.push(context, MaterialPageRoute(builder: (ctx) => const EmailVerificationScreen()));
         }
       },
-      child: const Text("Register")
+      child: const Text('Register')
     );
   }
 }
@@ -60,7 +60,7 @@ class _LoginButtonState extends State<LoginButton> {
         final String password = widget.passwordController.text;
         authLogin(context, email, password);
       },
-      child: const Text("Login")
+      child: const Text('Login')
     );
   }
 }

@@ -4,7 +4,6 @@ import 'package:mynotes/services/auth/users.dart';
 
 class AuthService implements AuthProvider {
   final AuthProvider provider;
-
   const AuthService(this.provider);
 
   factory AuthService.firebase() {

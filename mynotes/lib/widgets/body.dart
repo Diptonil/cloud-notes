@@ -150,8 +150,8 @@ class _EmailConfirmationBodyState extends State<EmailConfirmationBody> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: const [
-        Center(child: Text("Hold tight! Just a few more steps...")),
-        Center(child: Text("Check your email to verify yourself.")),
+        Center(child: Text('Hold tight! Just a few more steps...')),
+        Center(child: Text('Check your email to verify yourself.')),
         Center(child: CircularProgressIndicator()),
         Center(child: ResendEMailButton())
       ],
