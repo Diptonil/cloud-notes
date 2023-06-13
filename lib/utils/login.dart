@@ -11,7 +11,7 @@ void authLogin(BuildContext context, String email, String password) async {
     final user = AuthService.firebase().currentUser;
     if (user?.isEmailVerified ?? false) {
       if (context.mounted) {
-        Navigator.of(context).pushNamedAndRemoveUntil(homeRoute, (route) => false);
+        Navigator.of(context).pushNamedAndRemoveUntil(homeRoute, (route) => false, arguments: email);
       }
     } else {
       if (context.mounted) {

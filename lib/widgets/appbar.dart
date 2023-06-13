@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloudnotes/utils/constants.dart';
 import 'package:cloudnotes/utils/logout.dart';
-import 'dart:developer' as devtools show log;
 import 'package:cloudnotes/widgets/auth/dialogs.dart';
 
 enum MenuItem { 
@@ -21,8 +20,8 @@ class AnonymousUserAppBar extends StatelessWidget
       titleSpacing: 0,
       centerTitle: true,
       leading: const Icon(Icons.note_alt_outlined),
-      foregroundColor: Colors.black,
-      backgroundColor: Colors.amber,
+      foregroundColor: secondaryTextColor,
+      backgroundColor: primaryTextColor,
       shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
       title: const Text(
         _title,
@@ -50,8 +49,8 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleSpacing: 0,
       centerTitle: true,
       leading: const Icon(Icons.note_alt_outlined),
-      foregroundColor: Colors.black,
-      backgroundColor: Colors.amber,
+      foregroundColor: secondaryTextColor,
+      backgroundColor: primaryTextColor,
       shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
       title: const Text(
         _title,
@@ -94,7 +93,6 @@ class _PopupMenuState extends State<PopupMenu> {
         switch (value) {
           case MenuItem.logout:
             bool shouldLogout = await showLogoutDialog(context);
-            devtools.log(shouldLogout.toString());
             print(shouldLogout);
             logout(shouldLogout);
             if (context.mounted && shouldLogout) {

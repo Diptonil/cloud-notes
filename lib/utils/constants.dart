@@ -1,8 +1,17 @@
 // Routes
+import 'package:flutter/material.dart';
+
+
+const String createNoteRoute = '/note/create';
 const String homeRoute = '/home';
 const String loginRoute = '/login';
 const String registerRoute = '/register';
 const String verifyEmail = '/verify-email';
+
+
+// Colours
+const Color primaryTextColor = Colors.amber;
+const Color secondaryTextColor = Colors.black;
 
 
 // Database

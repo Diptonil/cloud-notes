@@ -16,12 +16,15 @@ void main() async {
   runApp(
       MaterialApp(
         title: 'Cloud Notes',
-        theme: ThemeData(
-          primarySwatch: Colors.amber,
-        ),
         home: const LoginScreen(),
+        theme: ThemeData(
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: Colors.amber
+          )
+        ),
         routes: {
           homeRoute: (context) => const HomeScreen(),
+          createNoteRoute: (context) => const CreateNoteScreen(),
           loginRoute: (context) => const LoginScreen(),
           registerRoute: (context) => const RegisterScreen(),
           verifyEmail: (context) => const EmailVerificationScreen()
