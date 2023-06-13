@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloudnotes/services/auth/exceptions.dart';
 import 'package:cloudnotes/services/auth/services.dart';
-import 'package:cloudnotes/widgets/dialogs.dart';
+import 'package:cloudnotes/widgets/auth/dialogs.dart';
 
 
 void authPasswordMismatch(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloudnotes/widgets/buttons.dart';
+import 'package:cloudnotes/widgets/auth/buttons.dart';
 
 
 Future<bool> showLogoutDialog(BuildContext context) {

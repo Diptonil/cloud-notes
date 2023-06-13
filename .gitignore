@@ -36,4 +36,4 @@ app.*.map.json
 /android/app/release
 
 # Miscellaneous
-rough
+rough.txt

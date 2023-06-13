@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloudnotes/services/auth/services.dart';
 import 'package:cloudnotes/utils/constants.dart';
-import 'package:cloudnotes/widgets/screens.dart';
+import 'package:cloudnotes/widgets/auth/screens.dart';
 import 'package:cloudnotes/utils/registration.dart';
 import 'package:cloudnotes/utils/login.dart';
 import 'package:cloudnotes/utils/email_verification.dart';

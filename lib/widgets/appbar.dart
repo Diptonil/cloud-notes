@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:cloudnotes/utils/constants.dart';
 import 'package:cloudnotes/utils/logout.dart';
 import 'dart:developer' as devtools show log;
-import 'package:cloudnotes/widgets/dialogs.dart';
+import 'package:cloudnotes/widgets/auth/dialogs.dart';
 
-
-enum MenuItem {
-  logout
+enum MenuItem { 
+  logout 
 }
 
 
 /// The main app bar visible to the logged out or anonymous user throughout the app lifecycle.
-class AnonymousUserAppBar extends StatelessWidget implements PreferredSizeWidget {
+class AnonymousUserAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
   const AnonymousUserAppBar({super.key});
-  static const String _title = 'My Notes';
+  static const String _title = 'Cloud Notes';
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +23,7 @@ class AnonymousUserAppBar extends StatelessWidget implements PreferredSizeWidget
       leading: const Icon(Icons.note_alt_outlined),
       foregroundColor: Colors.black,
       backgroundColor: Colors.amber,
-      shape: BeveledRectangleBorder(
-        borderRadius: BorderRadius.circular(20)
-      ),
+      shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
       title: const Text(
         _title,
         style: TextStyle(
@@ -54,9 +52,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: const Icon(Icons.note_alt_outlined),
       foregroundColor: Colors.black,
       backgroundColor: Colors.amber,
-      shape: BeveledRectangleBorder(
-        borderRadius: BorderRadius.circular(20)
-      ),
+      shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
       title: const Text(
         _title,
         style: TextStyle(
@@ -102,7 +98,8 @@ class _PopupMenuState extends State<PopupMenu> {
             print(shouldLogout);
             logout(shouldLogout);
             if (context.mounted && shouldLogout) {
-              Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (route) => false);
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(loginRoute, (route) => false);
             }
             break;
         }

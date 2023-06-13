@@ -1,39 +1,43 @@
-import 'package:cloudnotes/utils/constants.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart' show join;
-import 'package:cloudnotes/services/database/exceptions.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 
-class DatabaseService {
-  Database? _db;
+class Database {
+  final _database = Hive.box('cloudNotesUserDatabase');
 
-  Future<void> open() async {
-    if (_db != null) {
-      throw DatabaseAlreadyOpenException();
-    }
-    try {
-      final documentPath = await getApplicationDocumentsDirectory();
-      final databasePath = join(documentPath.path, databaseName);
-      _db  = await openDatabase(databasePath);
-      await _db?.execute(createUserTableQuery);
-      await _db?.execute(createNotesTableQuery);
-    } on MissingPlatformDirectoryException {
-      throw DocumentsDirectoryNotFoundException();
-    }
+  void write(String key, Object value) {
+    _database.put(key, value);
   }
 
-  Future<void> close() async {
-    if (_db == null) {
-      throw DatabaseNotOpenException();
-    }
-    await _db?.close();
+  Object read(String key) {
+    return _database.get(key);
   }
 
-  Database? _getDatabase() {
-    if (_db == null) {
-      throw DatabaseNotOpenException();
-    }
-    return _db;
+  void delete(String key) {
+    _database.delete(key);
+  }
+}
+
+
+class NoteDatabase {
+  final _database = Hive.box('cloudNotesNotesDatabase');
+
+  void create(Object note) {
+    _database.add(note);
+  }
+
+  Object readAll(int noteUserId) {
+    return _database.get(noteUserId);
+  }
+
+  void deleteAll(int noteUserId) {
+    _database.delete(noteUserId);
+  }
+
+  Object read(int noteId) {
+    return _database.get(noteId);
+  }
+
+  void delete(int noteId) {
+    _database.delete(noteId);
   }
 }

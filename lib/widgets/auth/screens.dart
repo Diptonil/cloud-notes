@@ -1,20 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloudnotes/widgets/body.dart';
+import 'package:cloudnotes/widgets/auth/body.dart';
 import 'package:cloudnotes/widgets/appbar.dart';
-
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.white,
-      appBar: BaseAppBar(),
-      body: Center(child: HomeBody()),
-    );
-  }
-}
 
 
 class LoginScreen extends StatelessWidget {

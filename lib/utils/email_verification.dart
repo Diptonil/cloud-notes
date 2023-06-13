@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloudnotes/services/auth/services.dart';
-import 'package:cloudnotes/widgets/screens.dart';
+import 'package:cloudnotes/widgets/auth/screens.dart';
 
 
 void displayVerificationSuccess(BuildContext context) {

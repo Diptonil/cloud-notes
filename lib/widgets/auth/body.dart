@@ -2,25 +2,9 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloudnotes/services/auth/services.dart';
-import 'package:cloudnotes/widgets/buttons.dart';
-import 'package:cloudnotes/widgets/textfields.dart';
+import 'package:cloudnotes/widgets/auth/buttons.dart';
+import 'package:cloudnotes/widgets/auth/textfields.dart';
 import 'package:cloudnotes/utils/email_verification.dart';
-
-
-class HomeBody extends StatefulWidget {
-  const HomeBody({super.key});
-
-  @override
-  State<HomeBody> createState() => _HomeBodyState();
-}
-
-
-class _HomeBodyState extends State<HomeBody> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
 
 
 class RegisterBody extends StatefulWidget {
@@ -147,9 +131,9 @@ class _EmailConfirmationBodyState extends State<EmailConfirmationBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: const [
+      children: [
         Center(child: Text('Hold tight! Just a few more steps...')),
         Center(child: Text('Check your email to verify yourself.')),
         Center(child: CircularProgressIndicator()),
