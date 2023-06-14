@@ -31,3 +31,16 @@ void createNoteService(String email, String title, String body) {
   ids.add(id);
   database.updateIds(email, ids);
 }
+
+
+void editNoteService(String email, String id, String title, String body) {
+  NoteDatabase database = NoteDatabase();
+  database.updateBody(email, id, body);
+  database.updateTitle(email, id, title);
+}
+
+
+void deleteNoteService(String email, String id) {
+  NoteDatabase database = NoteDatabase();
+  database.delete(email, id);
+}

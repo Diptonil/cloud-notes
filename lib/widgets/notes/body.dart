@@ -41,7 +41,7 @@ class _HomeBodyState extends State<HomeBody> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ViewNoteScreen(email: widget.email, title: notes[index]['title'], body: notes[index]['body']),
+                builder: (context) => ViewNoteScreen(email: widget.email, title: notes[index]['title'], body: notes[index]['body'], id: notes[index]['id']),
               ),
             );
           },
@@ -105,10 +105,11 @@ class _CreateNoteBodyState extends State<CreateNoteBody> {
 
 
 class ViewNoteBody extends StatefulWidget {
-  const ViewNoteBody({Key? key, required this.email, required this.title, required this.body}) : super(key: key);
+  const ViewNoteBody({Key? key, required this.email, required this.title, required this.body, required this.id}) : super(key: key);
   final String email;
   final String title;
   final String body;
+  final String id;
 
   @override
   State<ViewNoteBody> createState() => _ViewNoteBodyState();
@@ -145,7 +146,13 @@ class _ViewNoteBodyState extends State<ViewNoteBody> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: SaveNoteFloatingActionButton(titleController: _title, bodyController: _body, email: widget.email)
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              DeleteNoteFloatingActionButton(email: widget.email, id: widget.id),
+              EditNoteFloatingActionButton(titleController: _title, bodyController: _body, email: widget.email, id: widget.id)
+            ],
+          )
         )
       ]
     );

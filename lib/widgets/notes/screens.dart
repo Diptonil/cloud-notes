@@ -37,17 +37,18 @@ class CreateNoteScreen extends StatelessWidget {
 
 
 class ViewNoteScreen extends StatelessWidget {
-  const ViewNoteScreen({super.key, required this.email, required this.title, required this.body});
+  const ViewNoteScreen({super.key, required this.email, required this.title, required this.body, required this.id});
   final String email;
   final String title;
   final String body;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondaryTextColor,
       appBar: const BaseAppBar(),
-      body: Center(child: ViewNoteBody(email: email, title: title, body: body))
+      body: Center(child: ViewNoteBody(email: email, title: title, body: body, id: id))
     );
   }
 }

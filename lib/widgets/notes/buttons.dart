@@ -68,3 +68,75 @@ class _SaveNoteFloatingActionButtonState extends State<SaveNoteFloatingActionBut
     );
   }
 }
+
+
+class EditNoteFloatingActionButton extends StatefulWidget {
+  const EditNoteFloatingActionButton({Key? key, required this.titleController, required this.bodyController, required this.email, required this.id}) : super(key: key);
+  final TextEditingController titleController;
+  final TextEditingController bodyController;
+  final String email;
+  final String id;
+
+  @override
+  State<EditNoteFloatingActionButton> createState() => _EditNoteFloatingActionButtonState();
+}
+
+
+class _EditNoteFloatingActionButtonState extends State<EditNoteFloatingActionButton> {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      heroTag: 'editButton',
+      onPressed: () async {
+        final String title = widget.titleController.text;
+        final String body = widget.bodyController.text;
+        editNoteService(widget.email, widget.id, title, body);
+        if (context.mounted) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeScreen(email: widget.email),
+            ),
+          );
+        }
+      },
+      backgroundColor: primaryTextColor,
+      foregroundColor: secondaryTextColor,
+      child: const Icon(Icons.done),
+    );
+  }
+}
+
+
+class DeleteNoteFloatingActionButton extends StatefulWidget {
+  const DeleteNoteFloatingActionButton({Key? key, required this.email, required this.id}) : super(key: key);
+  final String email;
+  final String id;
+
+  @override
+  State<DeleteNoteFloatingActionButton> createState() => _DeleteNoteFloatingActionButtonState();
+}
+
+
+class _DeleteNoteFloatingActionButtonState extends State<DeleteNoteFloatingActionButton> {
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      heroTag: 'deleteButton',
+      onPressed: () async {
+        deleteNoteService(widget.email, widget.id);
+        if (context.mounted) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeScreen(email: widget.email),
+            ),
+          );
+        }
+      },
+      backgroundColor: primaryTextColor,
+      foregroundColor: secondaryTextColor,
+      child: const Icon(Icons.delete),
+    );
+  }
+}
