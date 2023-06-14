@@ -1,4 +1,3 @@
-import 'package:cloudnotes/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:cloudnotes/widgets/auth/body.dart';
 import 'package:cloudnotes/widgets/appbar.dart';
@@ -10,7 +9,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: secondaryTextColor,
+      backgroundColor: Colors.white,
       appBar: AnonymousUserAppBar(),
       body: Center(child: LoginBody()),
     );
@@ -24,7 +23,7 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: secondaryTextColor,
+      backgroundColor: Colors.white,
       appBar: AnonymousUserAppBar(),
       body: Center(child: RegisterBody()),
     );
@@ -38,7 +37,7 @@ class EmailVerificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: secondaryTextColor,
+      backgroundColor: Colors.white,
       appBar: AnonymousUserAppBar(),
       body: Center(child: EmailConfirmationBody()),
     );

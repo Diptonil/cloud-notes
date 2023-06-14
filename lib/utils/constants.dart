@@ -1,8 +1,6 @@
-// Routes
 import 'package:flutter/material.dart';
 
-
-const String createNoteRoute = '/note/create';
+// Routes
 const String homeRoute = '/home';
 const String loginRoute = '/login';
 const String registerRoute = '/register';

@@ -1,8 +1,8 @@
-import 'package:cloudnotes/utils/constants.dart';
 import 'package:cloudnotes/widgets/appbar.dart';
 import 'package:cloudnotes/widgets/notes/body.dart';
 import 'package:cloudnotes/widgets/notes/buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:cloudnotes/utils/constants.dart';
 
 
 class HomeScreen extends StatelessWidget {

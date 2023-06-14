@@ -22,7 +22,7 @@ class _RegisterButtonState extends State<RegisterButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return TextButton(
       onPressed: () async {
         final String email = widget.emailController.text;
         final String password = widget.passwordController.text;
@@ -34,10 +34,6 @@ class _RegisterButtonState extends State<RegisterButton> {
           Navigator.push(context, MaterialPageRoute(builder: (ctx) => const EmailVerificationScreen()));
         }
       },
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all<Color>(secondaryTextColor),
-        backgroundColor: MaterialStateProperty.all<Color>(primaryTextColor),
-      ),
       child: const Text('Register')
     );
   }
@@ -58,16 +54,12 @@ class _LoginButtonState extends State<LoginButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return TextButton(
       onPressed: () async {
         final String email = widget.emailController.text;
         final String password = widget.passwordController.text;
         authLogin(context, email, password);
       },
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all<Color>(secondaryTextColor),
-        backgroundColor: MaterialStateProperty.all<Color>(primaryTextColor),
-      ),
       child: const Text('Login')
     );
   }
@@ -105,13 +97,10 @@ class _RegisterNowButtonState extends State<RegisterNowButton> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all<Color>(primaryTextColor)
-      ),
+      child: const Text('Not registered yet? Register here.'),
       onPressed: () {
         Navigator.of(context).pushNamedAndRemoveUntil(registerRoute, (route) => false);
-      },
-      child: const Text('Not registered yet? Register here.')
+      }
     );
   }
 }
@@ -129,13 +118,10 @@ class _LoginNowButtonState extends State<LoginNowButton> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      style: ButtonStyle(
-        foregroundColor: MaterialStateProperty.all<Color>(primaryTextColor)
-      ),
+      child: const Text('Already a member? Login here.'),
       onPressed: () {
         Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (route) => false);
-      },
-      child: const Text('Not registered yet? Register here.')
+      }
     );
   }
 }

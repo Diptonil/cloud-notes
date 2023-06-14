@@ -1,5 +1,4 @@
 import 'package:cloudnotes/services/database/models.dart';
-import 'package:cloudnotes/services/database/providers.dart';
 import 'package:cloudnotes/utils/constants.dart';
 import 'package:cloudnotes/widgets/notes/screens.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +53,6 @@ class _SaveNoteFloatingActionButtonState extends State<SaveNoteFloatingActionBut
         final String title = widget.titleController.text;
         final String body = widget.bodyController.text;
         Note note = Note(body: body, createdTime: DateTime.now(), isSynced: false, title: title, email: widget.email);
-        await NotesDatabase.instance.create(note);
         if (context.mounted) {
           Navigator.push(
             context,

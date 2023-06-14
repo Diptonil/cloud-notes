@@ -1,4 +1,3 @@
-import 'package:cloudnotes/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 
@@ -8,31 +7,13 @@ class EmailTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-      child: TextField(
-        style: const TextStyle(
-          color: primaryTextColor,
-        ),
-        controller: emailController,
-        keyboardType: TextInputType.emailAddress,
-        enableSuggestions: true,
-        autocorrect: false,
-        decoration: const InputDecoration(
-          hintText: 'Email',
-          hintStyle: TextStyle(
-            color: primaryTextColor,
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryTextColor, width: 0.0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryTextColor, width: 0.0),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryTextColor, width: 0.0),
-          )
-        ),
+    return TextField(
+      controller: emailController,
+      keyboardType: TextInputType.emailAddress,
+      enableSuggestions: true,
+      autocorrect: false,
+      decoration: const InputDecoration(
+        hintText: 'Email'
       )
     );
   }
@@ -45,31 +26,13 @@ class PasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-      child: TextField(
-        controller: passwordController,
-        obscureText: true,
-        enableSuggestions: false,
-        autocorrect: false,
-        decoration: const InputDecoration(
-          hintText: 'Password',
-          hintStyle: TextStyle(
-            color: primaryTextColor,
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryTextColor, width: 0.0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryTextColor, width: 0.0),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryTextColor, width: 0.0),
-          )
-        ), 
-        style: const TextStyle(
-          color: primaryTextColor,
-        ),
+    return TextField(
+      controller: passwordController,
+      obscureText: true,
+      enableSuggestions: false,
+      autocorrect: false,
+      decoration: const InputDecoration(
+        hintText: 'Password'
       )
     );
   }
@@ -82,31 +45,13 @@ class ConfirmPasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-      child: TextField(
-        controller: confirmPasswordController,
-        obscureText: true,
-        enableSuggestions: false,
-        autocorrect: false,
-        decoration: const InputDecoration(
-          hintText: 'Password',
-          hintStyle: TextStyle(
-            color: primaryTextColor,
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryTextColor, width: 0.0),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryTextColor, width: 0.0),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: primaryTextColor, width: 0.0),
-          )
-        ), 
-        style: const TextStyle(
-          color: primaryTextColor,
-        ),
+    return TextField(
+      controller: confirmPasswordController,
+      obscureText: true,
+      enableSuggestions: false,
+      autocorrect: false,
+      decoration: const InputDecoration(
+        hintText: 'Confirm Password'
       )
     );
   }

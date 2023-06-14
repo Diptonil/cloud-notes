@@ -61,7 +61,7 @@ class NotInitializedException implements Exception {}
 
 class MockAuthProvider implements AuthProvider {
   AuthUser? _user;
-  bool _isInitialized = true;
+  final _isInitialized = true;
 
   bool get isInitialised {
     return _isInitialized;

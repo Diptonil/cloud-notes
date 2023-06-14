@@ -1,11 +1,8 @@
-import 'package:cloudnotes/services/database/models.dart';
-import 'package:cloudnotes/services/database/providers.dart';
+import 'package:cloudnotes/utils/constants.dart';
 import 'package:cloudnotes/widgets/notes/buttons.dart';
 import 'package:cloudnotes/widgets/notes/cards.dart';
 import 'package:cloudnotes/widgets/notes/textfields.dart';
 import 'package:flutter/material.dart';
-
-import '../../utils/constants.dart';
 
 
 class HomeBody extends StatefulWidget {
@@ -18,20 +15,7 @@ class HomeBody extends StatefulWidget {
 
 
 class _HomeBodyState extends State<HomeBody> {
-  late List<Note> notes;
-  bool isLoading = false;
-
-  Future refreshNotes() async {
-    setState(() => isLoading = true);
-    notes = await NotesDatabase.instance.readAllNotes(widget.email);
-    setState(() => isLoading = false);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    refreshNotes();
-  }
+  late var notes = [];
 
   @override
   Widget build(BuildContext context) {
