@@ -1,43 +1,23 @@
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:cloudnotes/services/database/providers.dart';
+import 'package:uuid/uuid.dart';
 
 
-class Database {
-  final _database = Hive.box('cloudNotesUserDatabase');
-
-  void write(String key, Object value) {
-    _database.put(key, value);
-  }
-
-  Object read(String key) {
-    return _database.get(key);
-  }
-
-  void delete(String key) {
-    _database.delete(key);
-  }
+List<String> getNotesService(String email) {
+  NoteDatabase database = NoteDatabase();
+  List<String> list = database.retrieveIds(email);
+  return list;
 }
 
 
-class NoteDatabase {
-  final _database = Hive.box('cloudNotesNotesDatabase');
-
-  void create(Object note) {
-    _database.add(note);
-  }
-
-  Object readAll(int noteUserId) {
-    return _database.get(noteUserId);
-  }
-
-  void deleteAll(int noteUserId) {
-    _database.delete(noteUserId);
-  }
-
-  Object read(int noteId) {
-    return _database.get(noteId);
-  }
-
-  void delete(int noteId) {
-    _database.delete(noteId);
-  }
+void createNoteService(String email, String title, String body) {
+  String id = const Uuid().v4().toString();
+  NoteDatabase database = NoteDatabase();
+  database.create('$email-$id-email', email);
+  database.create('$email-$id-id', id);
+  database.create('$email-$id-title', title);
+  database.create('$email-$id-body', body);
+  database.create('$email-$id-date', DateTime.now().toString());
+  List<String> ids = database.retrieveIds(email);
+  ids.add(id);
+  database.updateIds(email, ids);
 }

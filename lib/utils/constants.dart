@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // Routes
 const String homeRoute = '/home';
+const String createNoteRoute = '/note/create';
 const String loginRoute = '/login';
 const String registerRoute = '/register';
 const String verifyEmail = '/verify-email';

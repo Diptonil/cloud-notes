@@ -10,7 +10,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   firebaseInitialize();
   await Hive.initFlutter();
-  await Hive.openBox('cloudNotesUserDatabase');
   await Hive.openBox('cloudNotesNotesDatabase');
 
   runApp(
@@ -22,6 +21,7 @@ void main() async {
         home: const LoginScreen(),
         routes: {
           homeRoute: (context) => const HomeScreen(email: ''),
+          createNoteRoute: (context) => const CreateNoteScreen(email: ''),
           loginRoute: (context) => const LoginScreen(),
           registerRoute: (context) => const RegisterScreen(),
           verifyEmail: (context) => const EmailVerificationScreen()

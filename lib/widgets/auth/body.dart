@@ -40,10 +40,19 @@ class _RegisterBodyState extends State<RegisterBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(
+          height: 30,
+        ),
         EmailTextField(emailController: _email),
         PasswordTextField(passwordController: _password),
         ConfirmPasswordTextField(confirmPasswordController: _confirmPassword),
+        const SizedBox(
+          height: 200,
+        ),
         RegisterButton(emailController: _email, passwordController: _password, confirmPasswordController: _confirmPassword),
+        const SizedBox(
+          height: 100,
+        ),
         const LoginNowButton()
       ],
     );
@@ -81,9 +90,18 @@ class _LoginBodyState extends State<LoginBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(
+          height: 30,
+        ),
         EmailTextField(emailController: _email),
         PasswordTextField(passwordController: _password),
+        const SizedBox(
+          height: 300,
+        ),
         LoginButton(emailController: _email, passwordController: _password),
+        const SizedBox(
+          height: 100,
+        ),
         const RegisterNowButton(),
       ]
     );
