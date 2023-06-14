@@ -38,7 +38,10 @@ class _RegisterButtonState extends State<RegisterButton> {
         foregroundColor: MaterialStateProperty.all<Color>(secondaryTextColor),
         backgroundColor: MaterialStateProperty.all<Color>(primaryTextColor),
       ),
-      child: const Text('Register')
+      child: const Text(
+        'Register',
+        style: TextStyle(fontFamily: 'Feather'),
+      )
     );
   }
 }
@@ -68,7 +71,10 @@ class _LoginButtonState extends State<LoginButton> {
         foregroundColor: MaterialStateProperty.all<Color>(secondaryTextColor),
         backgroundColor: MaterialStateProperty.all<Color>(primaryTextColor),
       ),
-      child: const Text('Login')
+      child: const Text(
+        'Login',
+        style: TextStyle(fontFamily: 'Feather'),
+      )
     );
   }
 }
@@ -86,7 +92,10 @@ class _ResendEMailButtonState extends State<ResendEMailButton> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      child: const Text('Resend'),
+      child: const Text(
+        'Resend',
+        style: TextStyle(fontFamily: 'Feather'),
+      ),
       onPressed: () { sendEmailVerification(); }
     );
   }
@@ -111,7 +120,10 @@ class _RegisterNowButtonState extends State<RegisterNowButton> {
       onPressed: () {
         Navigator.of(context).pushNamedAndRemoveUntil(registerRoute, (route) => false);
       },
-      child: const Text('Not registered yet? Register here.')
+      child: const Text(
+        'Not registered yet? Register here.',
+        style: TextStyle(fontFamily: 'Feather'),
+      )
     );
   }
 }
@@ -135,7 +147,10 @@ class _LoginNowButtonState extends State<LoginNowButton> {
       onPressed: () {
         Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (route) => false);
       },
-      child: const Text('Already a member? Login here.')
+      child: const Text(
+        'Already a member? Login here.',
+        style: TextStyle(fontFamily: 'Feather'),
+      )
     );
   }
 }
@@ -156,7 +171,10 @@ class _LogoutButtonState extends State<LogoutButton> {
       onPressed: () {
         Navigator.of(context).pop(true);
       },
-      child: const Text('Log Out'),
+      child: const Text(
+        'Log Out',
+        style: TextStyle(fontFamily: 'Feather'),
+      ),
     );
   }
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:cloudnotes/utils/constants.dart';
 
 
 class NoteCard extends StatelessWidget {
   final String title;
   final String body;
-  final DateTime date;
+  final String date;
 
   const NoteCard({Key? key, required this.title, required this.body, required this.date}) : super(key: key);
 
@@ -13,8 +13,10 @@ class NoteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 2,
+      color: secondaryTextColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        side: const BorderSide(color: primaryTextColor, width: 2.0),
+        borderRadius: BorderRadius.circular(8.0),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -26,17 +28,19 @@ class NoteCard extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
+                color: primaryTextColor,
+                fontFamily: 'Feather'
               ),
             ),
             const SizedBox(height: 8),
             Text(
               _truncateContent(),
-              style: const TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 14, color: primaryTextColor),
             ),
             const SizedBox(height: 8),
             Text(
-              _formatDate(),
-              style: const TextStyle(fontSize: 12, color: Colors.grey),
+              date,
+              style: const TextStyle(fontSize: 12, color: primaryTextColor),
             ),
           ],
         ),
@@ -52,10 +56,5 @@ class NoteCard extends StatelessWidget {
       var result = body.substring(0, maxLength);
       return '$result ...';
     }
-  }
-
-  String _formatDate() {
-    final formatter = DateFormat('MMM dd, yyyy');
-    return formatter.format(date);
   }
 }

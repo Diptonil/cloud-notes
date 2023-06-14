@@ -1,6 +1,8 @@
+import 'package:cloudnotes/services/database/services.dart';
 import 'package:cloudnotes/utils/constants.dart';
 import 'package:cloudnotes/widgets/notes/buttons.dart';
 import 'package:cloudnotes/widgets/notes/cards.dart';
+import 'package:cloudnotes/widgets/notes/screens.dart';
 import 'package:cloudnotes/widgets/notes/textfields.dart';
 import 'package:flutter/material.dart';
 
@@ -15,17 +17,19 @@ class HomeBody extends StatefulWidget {
 
 
 class _HomeBodyState extends State<HomeBody> {
-  late var notes = [];
+  late List<dynamic> notes = getNotesService(widget.email);
 
   @override
   Widget build(BuildContext context) {
+    print(notes);
     return notes.isEmpty?
     const Center(
       child: Text(
         'No notes yet! Go create one.',
         style: TextStyle(
           fontSize: 16,
-          color: primaryTextColor
+          color: primaryTextColor,
+          fontFamily: 'Feather'
         ),
       ),
     ) :
@@ -34,12 +38,17 @@ class _HomeBodyState extends State<HomeBody> {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            // ON CARD CLICK LOGIC HERE!
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ViewNoteScreen(email: widget.email, title: notes[index]['title'], body: notes[index]['body']),
+              ),
+            );
           },
           child: NoteCard(
-            title: notes[index].title,
-            body: notes[index].body,
-            date: notes[index].createdTime
+            title: notes[index]['title'],
+            body: notes[index]['body'],
+            date: notes[index]['date']
           ),
         ); 
       },
@@ -82,6 +91,55 @@ class _CreateNoteBodyState extends State<CreateNoteBody> {
       children: [
         NoteTitleTextField(titleController: _title),
         NoteBodyTextField(bodyController: _body),
+        const SizedBox(
+          height: 400,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: SaveNoteFloatingActionButton(titleController: _title, bodyController: _body, email: widget.email)
+        )
+      ]
+    );
+  }
+}
+
+
+class ViewNoteBody extends StatefulWidget {
+  const ViewNoteBody({Key? key, required this.email, required this.title, required this.body}) : super(key: key);
+  final String email;
+  final String title;
+  final String body;
+
+  @override
+  State<ViewNoteBody> createState() => _ViewNoteBodyState();
+}
+
+
+class _ViewNoteBodyState extends State<ViewNoteBody> {
+  late final TextEditingController _title;
+  late final TextEditingController _body;
+
+  @override
+  void initState() {
+    _title = TextEditingController();
+    _body = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _title.dispose();
+    _body.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        NoteTitleEditTextField(titleController: _title, title: widget.title),
+        NoteBodyEditTextField(bodyController: _body, body: widget.body),
         const SizedBox(
           height: 400,
         ),

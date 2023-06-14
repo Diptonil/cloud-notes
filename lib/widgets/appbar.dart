@@ -27,7 +27,7 @@ class AnonymousUserAppBar extends StatelessWidget
       title: const Text(
         _title,
         style: TextStyle(
-          fontFamily: 'Quicksand',
+          fontFamily: 'Feather',
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -56,7 +56,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: const Text(
         _title,
         style: TextStyle(
-          fontFamily: 'Quicksand',
+          fontFamily: 'Feather',
           fontWeight: FontWeight.bold,
         ),
       ),

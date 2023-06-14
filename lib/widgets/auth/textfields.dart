@@ -22,6 +22,7 @@ class EmailTextField extends StatelessWidget {
           hintText: 'Email',
           hintStyle: TextStyle(
             color: primaryTextColor,
+            fontFamily: 'Feather'
           ),
           border: OutlineInputBorder(
             borderSide: BorderSide(color: primaryTextColor, width: 0.0),
@@ -56,6 +57,7 @@ class PasswordTextField extends StatelessWidget {
           hintText: 'Password',
           hintStyle: TextStyle(
             color: primaryTextColor,
+            fontFamily: 'Feather'
           ),
           border: OutlineInputBorder(
             borderSide: BorderSide(color: primaryTextColor, width: 0.0),
@@ -93,6 +95,7 @@ class ConfirmPasswordTextField extends StatelessWidget {
           hintText: 'Confirm Password',
           hintStyle: TextStyle(
             color: primaryTextColor,
+            fontFamily: 'Feather'
           ),
           border: OutlineInputBorder(
             borderSide: BorderSide(color: primaryTextColor, width: 0.0),

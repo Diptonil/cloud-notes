@@ -2,10 +2,20 @@ import 'package:cloudnotes/services/database/providers.dart';
 import 'package:uuid/uuid.dart';
 
 
-List<String> getNotesService(String email) {
+List<dynamic> getNotesService(String email) {
   NoteDatabase database = NoteDatabase();
-  List<String> list = database.retrieveIds(email);
-  return list;
+  List<dynamic> ids = database.retrieveIds(email);
+  List<dynamic> mapList = <dynamic>[];
+  for (String id in ids) {
+    Map<String, String> map = {
+      'id': id,
+      'title': database.retrieveTitle(email, id),
+      'body': database.retrieveBody(email, id),
+      'date': database.retrieveDate(email, id),
+    };
+    mapList.add(map);
+  }
+  return mapList;
 }
 
 
@@ -17,7 +27,7 @@ void createNoteService(String email, String title, String body) {
   database.create('$email-$id-title', title);
   database.create('$email-$id-body', body);
   database.create('$email-$id-date', DateTime.now().toString());
-  List<String> ids = database.retrieveIds(email);
+  List<dynamic> ids = database.retrieveIds(email);
   ids.add(id);
   database.updateIds(email, ids);
 }

@@ -8,27 +8,23 @@ class NoteDatabase {
     _database.put(key, value);
   }
 
-  void updateIds(String key, List<String> values) {
+  void updateIds(String key, List<dynamic> values) {
     _database.put(key, values);
   }
 
-  List<String> retrieveIds(String email) {
-    return _database.get(email) ?? <String>[];
+  List<dynamic> retrieveIds(String email) {
+    return _database.get(email) ?? <dynamic>[];
   }
 
-  Object readAll(int noteUserId) {
-    return _database.get(noteUserId);
+  String retrieveTitle(String email, String id) {
+    return _database.get('$email-$id-title');
   }
 
-  void deleteAll(int noteUserId) {
-    _database.delete(noteUserId);
+  String retrieveBody(String email, String id) {
+    return _database.get('$email-$id-body');
   }
 
-  Object read(int noteId) {
-    return _database.get(noteId);
-  }
-
-  void delete(int noteId) {
-    _database.delete(noteId);
+  String retrieveDate(String email, String id) {
+    return _database.get('$email-$id-date');
   }
 }
