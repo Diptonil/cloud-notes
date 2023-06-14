@@ -22,14 +22,14 @@ List<dynamic> getNotesService(String email) {
 void createNoteService(String email, String title, String body) {
   String id = const Uuid().v4().toString();
   NoteDatabase database = NoteDatabase();
-  database.create('$email-$id-email', email);
-  database.create('$email-$id-id', id);
-  database.create('$email-$id-title', title);
-  database.create('$email-$id-body', body);
-  database.create('$email-$id-date', DateTime.now().toString());
+  database.createNoteEmail(email, id);
+  database.createNoteId(email, id);
+  database.createNoteTitle(email, id, title);
+  database.createNoteBody(email, id, body);
+  database.createNoteDate(email, id, DateTime.now().toString());
   List<dynamic> ids = database.retrieveIds(email);
   ids.add(id);
-  database.updateIds(email, ids);
+  database.deleteLocalIds(email, ids);
 }
 
 
@@ -43,4 +43,22 @@ void editNoteService(String email, String id, String title, String body) {
 void deleteNoteService(String email, String id) {
   NoteDatabase database = NoteDatabase();
   database.delete(email, id);
+}
+
+
+void syncNotesService(String email) {
+  NoteDatabase database = NoteDatabase();
+  database.sync(email);
+}
+
+
+void flushCloudNotesService(String email) {
+  NoteDatabase database = NoteDatabase();
+  database.flushCloudData(email);
+}
+
+
+void flushLocalNotesService(String email) {
+  NoteDatabase database = NoteDatabase();
+  database.flushLocalData(email);
 }

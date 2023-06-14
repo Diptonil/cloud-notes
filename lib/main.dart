@@ -10,7 +10,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   firebaseInitialize();
   await Hive.initFlutter();
-  await Hive.openBox('cloudNotesNotesDatabase');
+  await Hive.openBox('cloudNotesLocalDatabase');
+  await Hive.openBox('cloudNotesPermanentDatabase');
 
   runApp(
       MaterialApp(

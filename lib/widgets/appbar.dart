@@ -1,3 +1,4 @@
+import 'package:cloudnotes/services/database/services.dart';
 import 'package:flutter/material.dart';
 import 'package:cloudnotes/utils/constants.dart';
 import 'package:cloudnotes/utils/logout.dart';
@@ -5,7 +6,10 @@ import 'dart:developer' as devtools show log;
 import 'package:cloudnotes/widgets/auth/dialogs.dart';
 
 enum MenuItem { 
-  logout 
+  logout,
+  sync,
+  flush,
+  delete
 }
 
 
@@ -21,8 +25,8 @@ class AnonymousUserAppBar extends StatelessWidget
       titleSpacing: 0,
       centerTitle: true,
       leading: const Icon(Icons.note_alt_outlined),
-      foregroundColor: Colors.black,
-      backgroundColor: Colors.amber,
+      foregroundColor: secondaryTextColor,
+      backgroundColor: primaryTextColor,
       shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
       title: const Text(
         _title,
@@ -41,8 +45,9 @@ class AnonymousUserAppBar extends StatelessWidget
 
 /// The main app bar visible to the logged in user throughout the app lifecycle.
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BaseAppBar({super.key});
+  const BaseAppBar({Key? key, required this.email}) : super(key: key);
   static const String _title = 'My Notes';
+  final String email;
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +55,8 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleSpacing: 0,
       centerTitle: true,
       leading: const Icon(Icons.note_alt_outlined),
-      foregroundColor: Colors.black,
-      backgroundColor: Colors.amber,
+      foregroundColor: secondaryTextColor,
+      backgroundColor: primaryTextColor,
       shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
       title: const Text(
         _title,
@@ -60,7 +65,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      actions: const [PopupMenu()],
+      actions: [PopupMenu(email: email)],
     );
   }
 
@@ -70,7 +75,8 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
 
 
 class PopupMenu extends StatefulWidget {
-  const PopupMenu({super.key});
+  const PopupMenu({Key? key, required this.email}) : super(key: key);
+  final String email;
 
   @override
   State<PopupMenu> createState() => _PopupMenuState();
@@ -88,6 +94,18 @@ class _PopupMenuState extends State<PopupMenu> {
             value: MenuItem.logout,
             child: Text('Log Out'),
           ),
+          const PopupMenuItem<MenuItem>(
+            value: MenuItem.sync,
+            child: Text('Sync with Cloud'),
+          ),
+          const PopupMenuItem<MenuItem>(
+            value: MenuItem.flush,
+            child: Text('Flush Cloud'),
+          ),
+          const PopupMenuItem<MenuItem>(
+            value: MenuItem.delete,
+            child: Text('Delete Local Data'),
+          ),
         ];
       },
       onSelected: (value) async {
@@ -101,6 +119,15 @@ class _PopupMenuState extends State<PopupMenu> {
               Navigator.of(context)
                   .pushNamedAndRemoveUntil(loginRoute, (route) => false);
             }
+            break;
+          case MenuItem.sync:
+            syncNotesService(widget.email);
+            break;
+          case MenuItem.flush:
+            flushCloudNotesService(widget.email);
+            break;
+          case MenuItem.delete:
+            flushLocalNotesService(widget.email);
             break;
         }
       },

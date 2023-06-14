@@ -21,7 +21,6 @@ class _HomeBodyState extends State<HomeBody> {
 
   @override
   Widget build(BuildContext context) {
-    print(notes);
     return notes.isEmpty?
     const Center(
       child: Text(

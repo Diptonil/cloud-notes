@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondaryTextColor,
-      appBar: const BaseAppBar(),
+      appBar: BaseAppBar(email: email),
       body: Center(child: HomeBody(email: email)),
       floatingActionButton: CreateNoteFloatingActionButton(email: email),
     );
@@ -29,7 +29,7 @@ class CreateNoteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondaryTextColor,
-      appBar: const BaseAppBar(),
+      appBar: BaseAppBar(email: email),
       body: Center(child: CreateNoteBody(email: email))
     );
   }
@@ -47,7 +47,7 @@ class ViewNoteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondaryTextColor,
-      appBar: const BaseAppBar(),
+      appBar: BaseAppBar(email: email),
       body: Center(child: ViewNoteBody(email: email, title: title, body: body, id: id))
     );
   }
