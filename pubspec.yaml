@@ -35,9 +35,9 @@ dependencies:
   cloud_firestore: ^4.5.1
   path_provider: ^2.0.15
   path: ^1.8.2
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
+  sqflite: ^2.2.8+4
   intl: ^0.18.1
+  uuid: ^3.0.4
 
 dev_dependencies:
   flutter_test:

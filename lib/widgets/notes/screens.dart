@@ -6,30 +6,31 @@ import 'package:flutter/material.dart';
 
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.email});
+  final String email;
 
   @override
   Widget build(BuildContext context) {
-    final String? email = ModalRoute.of(context)?.settings.arguments.toString();
     return Scaffold(
       backgroundColor: secondaryTextColor,
       appBar: const BaseAppBar(),
       body: Center(child: HomeBody(email: email)),
-      floatingActionButton: const CreateNoteFloatingActionButton(),
+      floatingActionButton: CreateNoteFloatingActionButton(email: email),
     );
   }
 }
 
 
 class CreateNoteScreen extends StatelessWidget {
-  const CreateNoteScreen({super.key});
+  const CreateNoteScreen({super.key, required this.email});
+  final String email;
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: secondaryTextColor,
-      appBar: BaseAppBar(),
-      body: Center(child: CreateNoteBody()),
+      appBar: const BaseAppBar(),
+      body: Center(child: CreateNoteBody(email: email))
     );
   }
 }

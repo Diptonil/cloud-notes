@@ -1,70 +1,67 @@
-import 'package:flutter/foundation.dart';
-import 'package:cloudnotes/utils/constants.dart';
+const String tableNotes = 'notes';
 
-@immutable
-class User {
-  final int id;
-  final String email;
 
-  const User({required this.id, required this.email});
+class NoteFields {
+  static final List<String> values = [id, isSynced, title, body, time];
 
-  Map<String, dynamic> toMap() {
-    return {
-      idColumn: id,
-      emailColumn: email
-    };
-  }
-
-  @override
-  String toString() {
-    return 'User <$id: $email>';
-  }
-
-  @override bool operator == (covariant User other) {
-    return id == other.id;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode;
-  }
+  static const String id = '_id';
+  static const String email = 'email';
+  static const String isSynced = 'isSynced';
+  static const String title = 'title';
+  static const String body = 'body';
+  static const String time = 'time';
 }
 
 
-@immutable
-class CloudNote {
-  final String id;
-  final String userId;
-  final String heading;
-  final String text;
-  final DateTime date;
-  final bool isSyncedWithCloud;
+class Note {
+  final int? id;
+  final String email;
+  final bool isSynced;
+  final String title;
+  final String body;
+  final DateTime createdTime;
 
-  const CloudNote({required this.id, required this.userId, required this.heading, required this.text, required this.date, required this.isSyncedWithCloud});
+  const Note({
+    this.id,
+    required this.email,
+    required this.isSynced,
+    required this.title,
+    required this.body,
+    required this.createdTime,
+  });
 
-  Map<String, dynamic> toMap() {
-    return {
-      idColumn: id,
-      userIdColumn: userId,
-      headingColumn: heading,
-      textColumn: text,
-      dateColumn: date,
-      isSyncedWithCloudColumn: isSyncedWithCloud
-    };
-  }
+  Note copy({
+    int? id,
+    String? email,
+    bool? isSynced,
+    String? title,
+    String? body,
+    DateTime? createdTime,
+  }) =>
+    Note(
+      id: id ?? this.id,
+      email: email ?? this.email,
+      isSynced: isSynced ?? this.isSynced,
+      title: title ?? this.title,
+      body: body ?? this.body,
+      createdTime: createdTime ?? this.createdTime,
+    );
 
-  @override
-  String toString() {
-    return 'Note <$id: $heading, $date, sync-$isSyncedWithCloud>';
-  }
+  static Note fromJson(Map<String, Object?> json) => Note(
+    id: json[NoteFields.id] as int?,
+    email: json[NoteFields.email] as String,
+    isSynced: json[NoteFields.isSynced] == 1,
+    title: json[NoteFields.title] as String,
+    body: json[NoteFields.body] as String,
+    createdTime: DateTime.parse(json[NoteFields.time] as String),
+  );
 
-  @override
-  bool operator == (covariant CloudNote other) {
-    return id == other.id;
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode;
-  }
+  Map<String, Object?> toJson() => {
+    NoteFields.id: id,
+    NoteFields.email: email,
+    NoteFields.title: title,
+    NoteFields.isSynced: isSynced ? 1 : 0,
+    NoteFields.body: body,
+    NoteFields.time: createdTime.toIso8601String(),
+  };
 }

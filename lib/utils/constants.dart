@@ -12,6 +12,8 @@ const String verifyEmail = '/verify-email';
 // Colours
 const Color primaryTextColor = Colors.amber;
 const Color secondaryTextColor = Colors.black;
+const Color writingHintTextColor = Colors.grey;
+const Color writingTextColor = Colors.white70;
 
 
 // Database

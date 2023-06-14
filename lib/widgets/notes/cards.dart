@@ -4,10 +4,10 @@ import 'package:intl/intl.dart';
 
 class NoteCard extends StatelessWidget {
   final String title;
-  final String content;
+  final String body;
   final DateTime date;
 
-  const NoteCard({Key? key, required this.title, required this.content, required this.date}) : super(key: key);
+  const NoteCard({Key? key, required this.title, required this.body, required this.date}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +46,10 @@ class NoteCard extends StatelessWidget {
 
   String _truncateContent() {
     const int maxLength = 100;
-    if (content.length <= maxLength) {
-      return content;
+    if (body.length <= maxLength) {
+      return body;
     } else {
-      var result = content.substring(0, maxLength);
+      var result = body.substring(0, maxLength);
       return '$result ...';
     }
   }

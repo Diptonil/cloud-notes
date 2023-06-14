@@ -1,13 +1,16 @@
-import 'package:cloudnotes/services/database/services.dart';
+import 'package:cloudnotes/services/database/models.dart';
+import 'package:cloudnotes/services/database/providers.dart';
+import 'package:cloudnotes/widgets/notes/buttons.dart';
 import 'package:cloudnotes/widgets/notes/cards.dart';
+import 'package:cloudnotes/widgets/notes/textfields.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants.dart';
 
 
 class HomeBody extends StatefulWidget {
-  final String? email;
   const HomeBody({Key? key, required this.email}) : super(key: key);
+  final String email;
 
   @override
   State<HomeBody> createState() => _HomeBodyState();
@@ -15,10 +18,24 @@ class HomeBody extends StatefulWidget {
 
 
 class _HomeBodyState extends State<HomeBody> {
+  late List<Note> notes;
+  bool isLoading = false;
+
+  Future refreshNotes() async {
+    setState(() => isLoading = true);
+    notes = await NotesDatabase.instance.readAllNotes(widget.email);
+    setState(() => isLoading = false);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    refreshNotes();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final note = getNotes(widget.email);
-    return note.isEmpty?
+    return notes.isEmpty?
     const Center(
       child: Text(
         'No notes yet! Go create one.',
@@ -29,13 +46,18 @@ class _HomeBodyState extends State<HomeBody> {
       ),
     ) :
     ListView.builder(
-      itemCount: 0,
+      itemCount: notes.length,
       itemBuilder: (context, index) {
-        return NoteCard(
-          title: note[index]['title'],
-          content: note[index]['content'],
-          date: note[index]['date']
-        );
+        return GestureDetector(
+          onTap: () {
+            // ON CARD CLICK LOGIC HERE!
+          },
+          child: NoteCard(
+            title: notes[index].title,
+            body: notes[index].body,
+            date: notes[index].createdTime
+          ),
+        ); 
       },
     );
   }
@@ -43,7 +65,8 @@ class _HomeBodyState extends State<HomeBody> {
 
 
 class CreateNoteBody extends StatefulWidget {
-  const CreateNoteBody({super.key});
+  const CreateNoteBody({Key? key, required this.email}) : super(key: key);
+  final String email;
 
   @override
   State<CreateNoteBody> createState() => _CreateNoteBodyState();
@@ -51,8 +74,38 @@ class CreateNoteBody extends StatefulWidget {
 
 
 class _CreateNoteBodyState extends State<CreateNoteBody> {
+  late final TextEditingController _title;
+  late final TextEditingController _body;
+
+  @override
+  void initState() {
+    _title = TextEditingController();
+    _body = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _title.dispose();
+    _body.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        NoteTitleTextField(titleController: _title),
+        NoteBodyTextField(bodyController: _body),
+        const SizedBox(
+          height: 400,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: SaveNoteFloatingActionButton(titleController: _title, bodyController: _body, email: widget.email)
+        )
+      ]
+    );
   }
 }

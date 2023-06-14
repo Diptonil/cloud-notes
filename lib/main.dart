@@ -23,8 +23,8 @@ void main() async {
           )
         ),
         routes: {
-          homeRoute: (context) => const HomeScreen(),
-          createNoteRoute: (context) => const CreateNoteScreen(),
+          homeRoute: (context) => const HomeScreen(email: ''),
+          createNoteRoute: (context) => const CreateNoteScreen(email: ''),
           loginRoute: (context) => const LoginScreen(),
           registerRoute: (context) => const RegisterScreen(),
           verifyEmail: (context) => const EmailVerificationScreen()

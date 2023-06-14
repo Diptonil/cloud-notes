@@ -1,3 +1,4 @@
+import 'package:cloudnotes/widgets/notes/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:cloudnotes/services/auth/exceptions.dart';
 import 'package:cloudnotes/services/auth/services.dart';
@@ -11,7 +12,12 @@ void authLogin(BuildContext context, String email, String password) async {
     final user = AuthService.firebase().currentUser;
     if (user?.isEmailVerified ?? false) {
       if (context.mounted) {
-        Navigator.of(context).pushNamedAndRemoveUntil(homeRoute, (route) => false, arguments: email);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(email: email),
+          ),
+        );
       }
     } else {
       if (context.mounted) {
