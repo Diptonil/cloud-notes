@@ -19,6 +19,23 @@ List<dynamic> getNotesService(String email) {
 }
 
 
+List<dynamic> getCloudNotesService(String email) {
+  CloudNoteDatabase database = CloudNoteDatabase();
+  List<dynamic> ids = database.retrieveIds(email);
+  List<dynamic> mapList = <dynamic>[];
+  for (String id in ids) {
+    Map<String, String> map = {
+      'id': id,
+      'title': database.retrieveTitle(email, id),
+      'body': database.retrieveBody(email, id),
+      'date': database.retrieveDate(email, id),
+    };
+    mapList.add(map);
+  }
+  return mapList;
+}
+
+
 void createNoteService(String email, String title, String body) {
   String id = const Uuid().v4().toString();
   NoteDatabase database = NoteDatabase();
@@ -53,12 +70,12 @@ void syncNotesService(String email) {
 
 
 void flushCloudNotesService(String email) {
-  NoteDatabase database = NoteDatabase();
-  database.flushCloudData(email);
+  CloudNoteDatabase database = CloudNoteDatabase();
+  database.flushData(email);
 }
 
 
 void flushLocalNotesService(String email) {
   NoteDatabase database = NoteDatabase();
-  database.flushLocalData(email);
+  database.flushData(email);
 }

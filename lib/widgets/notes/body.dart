@@ -103,23 +103,6 @@ class _CreateNoteBodyState extends State<CreateNoteBody> {
 }
 
 
-class HomeCloudBody extends StatefulWidget {
-  const HomeCloudBody({Key? key, required this.email}) : super(key: key);
-  final String email;
-
-  @override
-  State<HomeCloudBody> createState() => _HomeCloudBodyState();
-}
-
-
-class _HomeCloudBodyState extends State<HomeCloudBody> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-
 class ViewNoteBody extends StatefulWidget {
   const ViewNoteBody({Key? key, required this.email, required this.title, required this.body, required this.id}) : super(key: key);
   final String email;
@@ -171,6 +154,98 @@ class _ViewNoteBodyState extends State<ViewNoteBody> {
           )
         )
       ]
+    );
+  }
+}
+
+
+class ViewCloudNoteBody extends StatefulWidget {
+  const ViewCloudNoteBody({Key? key, required this.email, required this.title, required this.body, required this.id}) : super(key: key);
+  final String email;
+  final String title;
+  final String body;
+  final String id;
+
+  @override
+  State<ViewCloudNoteBody> createState() => _ViewCloudNoteBodyState();
+}
+
+
+class _ViewCloudNoteBodyState extends State<ViewCloudNoteBody> {
+  late final TextEditingController _title;
+  late final TextEditingController _body;
+
+  @override
+  void initState() {
+    _title = TextEditingController();
+    _body = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _title.dispose();
+    _body.dispose();
+    super.dispose();
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        CloudNoteTitleEditTextField(titleController: _title, title: widget.title),
+        CloudNoteBodyEditTextField(bodyController: _body, body: widget.body),
+      ]
+    );
+  }
+}
+
+
+class CloudHomeBody extends StatefulWidget {
+  const CloudHomeBody({Key? key, required this.email}) : super(key: key);
+  final String email;
+
+  @override
+  State<CloudHomeBody> createState() => _CloudHomeBodyState();
+}
+
+
+class _CloudHomeBodyState extends State<CloudHomeBody> {
+  late List<dynamic> notes = getCloudNotesService(widget.email);
+
+  @override
+  Widget build(BuildContext context) {
+    return notes.isEmpty?
+    const Center(
+      child: Text(
+        'No notes yet! Go create one.',
+        style: TextStyle(
+          fontSize: 16,
+          color: primaryTextColor,
+          fontFamily: 'Feather'
+        ),
+      ),
+    ) :
+    ListView.builder(
+      itemCount: notes.length,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ViewCloudNoteScreen(email: widget.email, title: notes[index]['title'], body: notes[index]['body'], id: notes[index]['id']),
+              ),
+            );
+          },
+          child: NoteCard(
+            title: notes[index]['title'],
+            body: notes[index]['body'],
+            date: notes[index]['date']
+          ),
+        ); 
+      },
     );
   }
 }

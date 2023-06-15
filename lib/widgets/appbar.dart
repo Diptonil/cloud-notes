@@ -15,8 +15,7 @@ enum MenuItem {
 
 
 /// The main app bar visible to the logged out or anonymous user throughout the app lifecycle.
-class AnonymousUserAppBar extends StatelessWidget
-    implements PreferredSizeWidget {
+class AnonymousUserAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AnonymousUserAppBar({super.key});
   static const String _title = 'Cloud Notes';
 
@@ -25,7 +24,6 @@ class AnonymousUserAppBar extends StatelessWidget
     return AppBar(
       titleSpacing: 0,
       centerTitle: true,
-      leading: const Icon(Icons.note_alt_outlined),
       foregroundColor: secondaryTextColor,
       backgroundColor: primaryTextColor,
       shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -55,7 +53,6 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       titleSpacing: 0,
       centerTitle: true,
-      leading: const Icon(Icons.note_alt_outlined),
       foregroundColor: secondaryTextColor,
       backgroundColor: primaryTextColor,
       shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(20)),
