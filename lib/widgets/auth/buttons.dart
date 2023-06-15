@@ -195,7 +195,10 @@ class _OKButtonState extends State<OKButton> {
       onPressed: () {
         Navigator.of(context).pop(true);
       },
-      child: const Text('OK'),
+      child: const Text(
+        'OK',
+        style: TextStyle(fontFamily: 'Feather')
+      ),
     );
   }
 }
@@ -216,7 +219,10 @@ class _CancelButtonState extends State<CancelButton> {
       onPressed: () {
         Navigator.of(context).pop(false);
       },
-      child: const Text('Cancel'),
+      child: const Text(
+        'Cancel',
+        style: TextStyle(fontFamily: 'Feather')
+      ),
     );
   }
 }

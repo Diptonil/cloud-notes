@@ -103,6 +103,23 @@ class _CreateNoteBodyState extends State<CreateNoteBody> {
 }
 
 
+class HomeCloudBody extends StatefulWidget {
+  const HomeCloudBody({Key? key, required this.email}) : super(key: key);
+  final String email;
+
+  @override
+  State<HomeCloudBody> createState() => _HomeCloudBodyState();
+}
+
+
+class _HomeCloudBodyState extends State<HomeCloudBody> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+
 class ViewNoteBody extends StatefulWidget {
   const ViewNoteBody({Key? key, required this.email, required this.title, required this.body, required this.id}) : super(key: key);
   final String email;

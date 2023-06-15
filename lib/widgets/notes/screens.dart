@@ -1,6 +1,7 @@
 import 'package:cloudnotes/widgets/appbar.dart';
 import 'package:cloudnotes/widgets/notes/body.dart';
 import 'package:cloudnotes/widgets/notes/buttons.dart';
+import 'package:cloudnotes/widgets/notes/navigationbar.dart';
 import 'package:flutter/material.dart';
 import 'package:cloudnotes/utils/constants.dart';
 
@@ -14,8 +15,9 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: secondaryTextColor,
       appBar: BaseAppBar(email: email),
-      body: Center(child: HomeBody(email: email)),
       floatingActionButton: CreateNoteFloatingActionButton(email: email),
+      drawer: const BaseNavigationDrawer(),
+      body: Center(child: HomeBody(email: email)),
     );
   }
 }

@@ -27,10 +27,19 @@ class SignOutAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AlertDialog(
-      title: Text('Log Out'),
-      content: Text('Are you sure that you wish to log out?'),
-      actions: [
+    return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      title: const Text(
+        'Log Out',
+        style: TextStyle(fontFamily: 'Feather')
+      ),
+      content: const Text(
+        'Are you sure that you wish to log out?',
+        style: TextStyle(fontFamily: 'Feather')
+      ),
+      actions: const [
         CancelButton(),
         LogoutButton()
       ],
@@ -46,8 +55,17 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Error'),
-      content: Text(error),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      title: const Text(
+        'Error',
+        style: TextStyle(fontFamily: 'Feather')
+      ),
+      content: Text(
+        error,
+        style: const TextStyle(fontFamily: 'Feather')
+      ),
       actions: const [
         OKButton(),
       ],

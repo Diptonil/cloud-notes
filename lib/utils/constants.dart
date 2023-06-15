@@ -13,6 +13,7 @@ const Color primaryTextColor = Colors.amber;
 const Color secondaryTextColor = Colors.black;
 const Color writingHintTextColor = Colors.grey;
 const Color writingTextColor = Colors.white70;
+const Color dialogBoxColor = Color.fromARGB(31, 44, 40, 40);
 
 
 // Database
