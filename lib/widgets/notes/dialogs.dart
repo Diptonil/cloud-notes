@@ -2,64 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:cloudnotes/widgets/notes/buttons.dart';
 
 
-Future<bool> showSyncDialog(BuildContext context) {
+Future<bool> showFlushCloudDialog(BuildContext context) {
   return showDialog<bool>(
     context: context,
     builder: (context) {
-      return const SyncNotesAlertDialog();
+      return const FlushCloudNotesAlertDialog();
     }
   ).then((value) => value ?? false);
 }
 
 
-Future<bool> showFlushDialog(BuildContext context) {
+Future<bool> showFlushLocalDialog(BuildContext context) {
   return showDialog<bool>(
     context: context,
     builder: (context) {
-      return const FlushNotesAlertDialog();
+      return const FlushLocalNotesAlertDialog();
     }
   ).then((value) => value ?? false);
 }
 
 
-Future<bool> showDeleteDialog(BuildContext context) {
-  return showDialog<bool>(
-    context: context,
-    builder: (context) {
-      return const DeleteNotesAlertDialog();
-    }
-  ).then((value) => value ?? false);
-}
-
-
-class SyncNotesAlertDialog extends StatelessWidget {
-  const SyncNotesAlertDialog({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      title: const Text(
-        'Sync Notes',
-        style: TextStyle(fontFamily: 'Feather')
-      ),
-      content: const Text(
-        'This action would cause the local storage to retrieve cloud data. Continue?',
-        style: TextStyle(fontFamily: 'Feather')
-      ),
-      actions: const [
-        CancelButton(),
-        OKButton()
-      ],
-    );
-  }
-}
-
-
-class FlushNotesAlertDialog extends StatelessWidget {
-  const FlushNotesAlertDialog({super.key});
+class FlushCloudNotesAlertDialog extends StatelessWidget {
+  const FlushCloudNotesAlertDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +48,8 @@ class FlushNotesAlertDialog extends StatelessWidget {
 }
 
 
-class DeleteNotesAlertDialog extends StatelessWidget {
-  const DeleteNotesAlertDialog({super.key});
+class FlushLocalNotesAlertDialog extends StatelessWidget {
+  const FlushLocalNotesAlertDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:uuid/uuid.dart';
 
 
 List<dynamic> getNotesService(String email) {
-  NoteDatabase database = NoteDatabase();
+  LocalNoteDatabase database = LocalNoteDatabase();
   List<dynamic> ids = database.retrieveIds(email);
   List<dynamic> mapList = <dynamic>[];
   for (String id in ids) {
@@ -38,7 +38,14 @@ List<dynamic> getCloudNotesService(String email) {
 
 void createNoteService(String email, String title, String body) {
   String id = const Uuid().v4().toString();
-  NoteDatabase database = NoteDatabase();
+  LocalNoteDatabase localNoteDatabase = LocalNoteDatabase();
+  CloudNoteDatabase cloudNoteDatabase = CloudNoteDatabase();
+  createNoteServiceHelper(localNoteDatabase, id, email, body, title);
+  createNoteServiceHelper(cloudNoteDatabase, id, email, body, title);
+}
+
+
+void createNoteServiceHelper(dynamic database, String id, String email, String body, String title) {
   database.createNoteEmail(email, id);
   database.createNoteId(email, id);
   database.createNoteTitle(email, id, title);
@@ -46,26 +53,23 @@ void createNoteService(String email, String title, String body) {
   database.createNoteDate(email, id, DateTime.now().toString());
   List<dynamic> ids = database.retrieveIds(email);
   ids.add(id);
-  database.deleteLocalIds(email, ids);
+  database.updateIds(email, ids);
 }
 
 
 void editNoteService(String email, String id, String title, String body) {
-  NoteDatabase database = NoteDatabase();
-  database.updateBody(email, id, body);
-  database.updateTitle(email, id, title);
+  LocalNoteDatabase localNoteDatabase = LocalNoteDatabase();
+  CloudNoteDatabase cloudNoteDatabase = CloudNoteDatabase();
+  localNoteDatabase.updateBody(email, id, body);
+  localNoteDatabase.updateTitle(email, id, title);
+  cloudNoteDatabase.updateBody(email, id, body);
+  cloudNoteDatabase.updateTitle(email, id, title);
 }
 
 
 void deleteNoteService(String email, String id) {
-  NoteDatabase database = NoteDatabase();
+  LocalNoteDatabase database = LocalNoteDatabase();
   database.delete(email, id);
-}
-
-
-void syncNotesService(String email) {
-  NoteDatabase database = NoteDatabase();
-  database.sync(email);
 }
 
 
@@ -76,6 +80,6 @@ void flushCloudNotesService(String email) {
 
 
 void flushLocalNotesService(String email) {
-  NoteDatabase database = NoteDatabase();
+  LocalNoteDatabase database = LocalNoteDatabase();
   database.flushData(email);
 }

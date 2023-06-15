@@ -8,9 +8,8 @@ import 'package:cloudnotes/widgets/notes/dialogs.dart';
 
 enum MenuItem { 
   logout,
-  sync,
-  flush,
-  delete
+  flushCloud,
+  flushLocal
 }
 
 
@@ -93,15 +92,11 @@ class _PopupMenuState extends State<PopupMenu> {
             child: Text('Log Out'),
           ),
           const PopupMenuItem<MenuItem>(
-            value: MenuItem.sync,
-            child: Text('Sync with Cloud'),
-          ),
-          const PopupMenuItem<MenuItem>(
-            value: MenuItem.flush,
+            value: MenuItem.flushCloud,
             child: Text('Flush Cloud'),
           ),
           const PopupMenuItem<MenuItem>(
-            value: MenuItem.delete,
+            value: MenuItem.flushLocal,
             child: Text('Delete Local Data'),
           ),
         ];
@@ -115,21 +110,15 @@ class _PopupMenuState extends State<PopupMenu> {
               Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (route) => false);
             }
             break;
-          case MenuItem.sync:
-            bool shouldSync = await showSyncDialog(context);
-            if (shouldSync) {
-              syncNotesService(widget.email);
-            }
-            break;
-          case MenuItem.flush:
-            bool shouldFlush = await showFlushDialog(context);
+          case MenuItem.flushCloud:
+            bool shouldFlush = await showFlushCloudDialog(context);
             if (shouldFlush) {
               flushCloudNotesService(widget.email);
             }
             break;
-          case MenuItem.delete:
-            bool shouldDelete = await showDeleteDialog(context);
-            if (shouldDelete) {
+          case MenuItem.flushLocal:
+            bool shouldFlush = await showFlushLocalDialog(context);
+            if (shouldFlush) {
               flushLocalNotesService(widget.email);
             }
             break;
