@@ -2,8 +2,9 @@ import 'package:cloudnotes/services/database/services.dart';
 import 'package:flutter/material.dart';
 import 'package:cloudnotes/utils/constants.dart';
 import 'package:cloudnotes/utils/logout.dart';
-import 'dart:developer' as devtools show log;
 import 'package:cloudnotes/widgets/auth/dialogs.dart';
+import 'package:cloudnotes/widgets/notes/dialogs.dart';
+
 
 enum MenuItem { 
   logout,
@@ -112,22 +113,28 @@ class _PopupMenuState extends State<PopupMenu> {
         switch (value) {
           case MenuItem.logout:
             bool shouldLogout = await showLogoutDialog(context);
-            devtools.log(shouldLogout.toString());
-            print(shouldLogout);
             logout(shouldLogout);
             if (context.mounted && shouldLogout) {
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil(loginRoute, (route) => false);
+              Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (route) => false);
             }
             break;
           case MenuItem.sync:
-            syncNotesService(widget.email);
+            bool shouldSync = await showSyncDialog(context);
+            if (shouldSync) {
+              syncNotesService(widget.email);
+            }
             break;
           case MenuItem.flush:
-            flushCloudNotesService(widget.email);
+            bool shouldFlush = await showFlushDialog(context);
+            if (shouldFlush) {
+              flushCloudNotesService(widget.email);
+            }
             break;
           case MenuItem.delete:
-            flushLocalNotesService(widget.email);
+            bool shouldDelete = await showDeleteDialog(context);
+            if (shouldDelete) {
+              flushLocalNotesService(widget.email);
+            }
             break;
         }
       },

@@ -140,3 +140,45 @@ class _DeleteNoteFloatingActionButtonState extends State<DeleteNoteFloatingActio
     );
   }
 }
+
+
+class CancelButton extends StatefulWidget {
+  const CancelButton({super.key});
+
+  @override
+  State<CancelButton> createState() => _CancelButtonState();
+}
+
+
+class _CancelButtonState extends State<CancelButton> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).pop(false);
+      },
+      child: const Text('Cancel'),
+    );
+  }
+}
+
+
+class OKButton extends StatefulWidget {
+  const OKButton({super.key});
+
+  @override
+  State<OKButton> createState() => _OKButtonState();
+}
+
+
+class _OKButtonState extends State<OKButton> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        Navigator.of(context).pop(true);
+      },
+      child: const Text('OK'),
+    );
+  }
+}
